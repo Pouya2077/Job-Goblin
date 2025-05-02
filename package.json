@@ -1,5 +1,6 @@
 {
   "name": "job-goblin",
+  "type": "module",
   "version": "0.1.0",
   "description": "",
   "keywords": [],
@@ -64,6 +65,7 @@
     "@types/jest": "^29.5.14",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "axios": "^1.9.0",
     "typescript": "^5.8.2"
   }
 }
