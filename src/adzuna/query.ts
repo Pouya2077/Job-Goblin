@@ -9,8 +9,9 @@ const apiKey = process.env.ADZUNA_KEY;
 const apiUrl = 'http://api.adzuna.com/v1/api/jobs/ca/search/1?';
 
 /** 
- * @params number of jobs requests (max is MAX_RESULTS) and type of job 
- * @return promise: JSON job object or error 
+ * @param {number} num_results - number of fetched results
+ * @param {string} job         - searched job 
+ * @returns {Promise<JSON>}    - JSON object of fetched jobs
  */
 export async function simpleQuery(num_results: number, job: string) {
     return axios.get(apiUrl, {
@@ -21,7 +22,6 @@ export async function simpleQuery(num_results: number, job: string) {
             what: job,
         }
     });
-    
 }
 
 // axios.get(apiUrl, {

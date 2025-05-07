@@ -1,7 +1,21 @@
 import * as Query from "./query.js"
 
-Query.simpleQuery(11, "software developer")
+Query.simpleQuery(11, "software Developer")
+// .then(response => {
+//     console.log(response.data.status);
+//     console.log(response.data);
+//     //console.log(response.data.isRawJSON());
+// })
+// .catch(response => {
+//     console.log(response.data.status);
+//     console.log(response.data.headers);
+//     console.log(response.data)
+// })
+
 .then(response => {
-    console.log(response.data.status);
-    console.log(response.data)
+    console.log(JSON.parse(JSON.stringify(response.data)));
+    console.log(response.data.results[0].title);
+    console.log(response.data.results[0].salary_min);
+    console.log(response.data.results[0].location);
+    //console.log(response.data.results[12].title);
 })
