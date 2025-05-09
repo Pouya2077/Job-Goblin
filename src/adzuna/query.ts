@@ -1,7 +1,6 @@
 import axios from "axios"
 import dotenv from 'dotenv'
 import * as Constants from "./constants.js"
-
 dotenv.config();
 
 const appID = process.env.ADZUNA_ID;

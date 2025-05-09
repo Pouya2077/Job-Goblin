@@ -1,25 +1,32 @@
 import * as Query from "./query.js"
 import * as Parse from "./parse.js"
+import * as Auth from "../supabase/auth.js"
+import dotenv from "dotenv"
+dotenv.config();
+
+let data, error;
+
+({data, error} = await Auth.signUp((process.env.EMAIL as string), (process.env.PASS as string), "John Doe"))
+
+if (data) {
+    console.log("Successful Auth ", data);
+} else {
+    console.log("Error: ", error);
+}
+
+({data, error} = await Auth.passwordSignIn((process.env.EMAIL as string), (process.env.PASS as string)))
+
+if (data) {
+    console.log("Successful SignIn ", data);
+} else {
+    console.log("Error Signing In: ", error);
+}
 
 Query.simpleQuery(11, "software Developer")
-// .then(response => {
-//     console.log(response.data.status);
-//     console.log(response.data);
-//     //console.log(response.data.isRawJSON());
-// })
-// .catch(response => {
-//     console.log(response.data.status);
-//     console.log(response.data.headers);
-//     console.log(response.data)
-// })
-
 .then(response => {
-    // console.log(JSON.parse(JSON.stringify(response.data)));
-    // console.log(response.data.results[0].title);
-    // console.log(response.data.results[0].salary_min);
-    // console.log(response.data.results[0].location);
-    // //console.log(response.data.results[12].title);
-
     Parse.parseSimple(response, 11);
+})
+.catch(error => {
+    console.log("Error: ", error.data);
 })
 
