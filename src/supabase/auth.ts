@@ -1,6 +1,6 @@
 import supabase from "./connection.js"
 
-export async function signUp(email: string, password: string, name: string) {
+export async function signUpWithPassword(email: string, password: string, name: string) {
     return supabase.auth.signUp({
         email: email, 
         password: password, 
@@ -12,7 +12,7 @@ export async function signUp(email: string, password: string, name: string) {
     })
 }
 
-export async function passwordSignIn(email: string, password: string) {
+export async function signInWithPassword(email: string, password: string) {
     return supabase.auth.signInWithPassword({
         email: email, 
         password: password,

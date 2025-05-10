@@ -6,7 +6,7 @@ dotenv.config();
 
 let data, error;
 
-({data, error} = await Auth.signUp((process.env.EMAIL as string), (process.env.PASS as string), "John Doe"))
+({data, error} = await Auth.signUpWithPassword((process.env.EMAIL as string), (process.env.PASS as string), "John Doe"))
 
 if (data) {
     console.log("Successful Auth ", data);
@@ -14,7 +14,7 @@ if (data) {
     console.log("Error: ", error);
 }
 
-({data, error} = await Auth.passwordSignIn((process.env.EMAIL as string), (process.env.PASS as string)))
+({data, error} = await Auth.signInWithPassword((process.env.EMAIL as string), (process.env.PASS as string)))
 
 if (data) {
     console.log("Successful SignIn ", data);
@@ -24,7 +24,7 @@ if (data) {
 
 Query.simpleQuery(11, "software Developer")
 .then(response => {
-    Parse.parseSimple(response, 11);
+    Parse.parseSimple(response);
 })
 .catch(error => {
     console.log("Error: ", error.data);

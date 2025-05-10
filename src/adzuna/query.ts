@@ -23,21 +23,3 @@ export async function simpleQuery(num_results: number, job: string) {
     });
 }
 
-// axios.get(apiUrl, {
-//     params: {
-//         app_id: appID, 
-//         app_key: apiKey,
-//         results_per_page: 3, 
-//         what: "software developer", 
-//     }
-
-// })
-// .then(response => {
-//     console.log(response.data);
-//     console.log("Status: ", response.data.status);
-// })
-// .catch(error => {
-//     console.log("Error! ", error.response.data);
-//     console.log(error.response.status);
-//     console.log(error.response.headers);
-// })
