@@ -1,6 +1,6 @@
-const {DEV_SERVER_PORT, API, API_PORT} = process.env
-const chalk = require('chalk')
-const os = require('os')
+import chalk from 'chalk';
+import os from 'os'
+const {DEV_SERVER_PORT, API, API_PORT} = process.env;
 
 /*
   This is a custom Webpack plugin that simply runs a function after each build.
@@ -90,4 +90,4 @@ function getLocalIpAddress() {
   return obj ? obj.address : '0.0.0.0'
 }
 
-module.exports = AfterCompilePlugin
+export default AfterCompilePlugin;

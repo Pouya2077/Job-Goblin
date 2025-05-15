@@ -1,7 +1,7 @@
 import axios from "axios"
-import dotenv from 'dotenv'
 import * as Constants from "./constants.js"
-dotenv.config();
+import dotenv from 'dotenv'
+dotenv.config()
 
 const appID = process.env.ADZUNA_ID;
 const apiKey = process.env.ADZUNA_KEY;

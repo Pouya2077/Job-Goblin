@@ -1,13 +1,28 @@
-require('dotenv').config({path: `${__dirname}/.env`}) // http://bit.ly/2WE8EJP
-const {NODE_ENV, DEV_SERVER_PORT, API, API_PORT, API_WEBPACK} = process.env
-const path = require('path')
-const webpack = require('webpack')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
-const AfterCompilePlugin = require('./after-compile-plugin')
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+import webpack from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import AfterCompilePlugin from './after-compile-plugin.js';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+
+const { NODE_ENV, DEV_SERVER_PORT, API, API_PORT, API_WEBPACK } = process.env;
+
+// require('dotenv').config({path: `${__dirname}/.env`}) // http://bit.ly/2WE8EJP //
+// const {NODE_ENV, DEV_SERVER_PORT, API, API_PORT, API_WEBPACK} = process.env //
+// const path = require('path') //
+// const webpack = require('webpack') //
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin') //
+// const {CleanWebpackPlugin} = require('clean-webpack-plugin') //
+// const HtmlWebpackPlugin = require('html-webpack-plugin') //
+// const TerserPlugin = require('terser-webpack-plugin')
+// const AfterCompilePlugin = require('./after-compile-plugin')
+// const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 console.log(`
 
@@ -21,7 +36,7 @@ console.log(`
 
 if (NODE_ENV === 'production') console.log('Building for production...\n\n')
 
-module.exports = (env, argv) => ({
+export default (env, argv) => ({
   // https://bit.ly/3awbwiG
   mode: env.prod ? 'production' : 'development',
 

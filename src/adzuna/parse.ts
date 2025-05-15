@@ -19,7 +19,7 @@ async function insertInTable(job: Job, table: string) {
  *              expected that repsonse is NOT an error 
  * @param {AxiosResponse} response - JSON object of returned jobs 
  */
-export async function parseSimple(response: AxiosResponse<any>) {
+export async function simpleParse(response: AxiosResponse<any>) {
     const jobs = response.data.results as Job[];
     const insertPromises = jobs.map(job => insertInTable(job, "test_jobs"));
 
