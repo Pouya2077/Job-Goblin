@@ -5,12 +5,14 @@ import { AxiosPromise, AxiosResponse } from "axios";
 type Job = {
     id: string, 
     title: string,
+    jsonb: any;
 }
 
 async function insertInTable(job: Job, table: string) {
     return supabase.from(table).insert({
         id: job.id,
         title: job.title, 
+        raw_job: job,
     })
 }
 
