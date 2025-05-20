@@ -1,5 +1,5 @@
 import axios from "axios"
-import * as Constants from "./constants.js"
+import * as Constants from "./constants"
 // import dotenv from 'dotenv'
 // dotenv.config()
 

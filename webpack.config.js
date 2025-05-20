@@ -158,6 +158,14 @@ export default (env, argv) => ({
         * ESx => ES5
         * JSX => ES5
       */
+    {
+        test: /\.tsx?$/, 
+        use: 'ts-loader', 
+        exclude: /node_modules/,
+
+    },
+
+
       {
         // sideEffects: false,
         test: /\.(js|jsx)$/,
@@ -316,7 +324,7 @@ export default (env, argv) => ({
       http://bit.ly/2WI1BQo
       Automatically resolve certain extensions without having to type them out.
     */
-    extensions: ['.js', '.jsx', '.json', '.scss'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.json', '.scss'],
   },
 
   // http://bit.ly/2WH6fOH
