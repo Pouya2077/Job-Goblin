@@ -1,7 +1,7 @@
-import useUpdatingClock from 'hooks/useUpdatingClock'
+//import useUpdatingClock from 'hooks/useUpdatingClock'
 
 export default function App() {
-  const {hour, minutes, seconds, amPm} = useUpdatingClock()
+  //const {hour, minutes, seconds, amPm} = useUpdatingClock()
 
   return (
     <div className="df flex-col vh-100">
@@ -30,10 +30,10 @@ export default function App() {
           Now go! Save the world with <span className="gold">JavaScript</span>!
         </div>
 
-        <div className="pa16 f-1-5em">
+        {/* <div className="pa16 f-1-5em">
           {hour}:{minutes}:{seconds}
           <span className="f-initial pl4">{amPm}</span>
-        </div>
+        </div> */}
       </section>
     </div>
   )

@@ -1,8 +1,8 @@
 import * as Query from "./query.js"
 import * as Parse from "./parse.js"
 import * as Auth from "../supabase/auth.js"
-import dotenv from 'dotenv'
-dotenv.config()
+// import dotenv from 'dotenv'
+// dotenv.config()
 
 let data, error;
 

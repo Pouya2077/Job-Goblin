@@ -10,7 +10,7 @@
   All other scss files should be imported in `styles.scss`.
 */
 import './styles/styles.scss'
-import 'dotenv/config'
+//import 'dotenv/config'
 
 // Import React.
 import React from 'react'
