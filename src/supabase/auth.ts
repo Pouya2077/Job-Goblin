@@ -1,4 +1,4 @@
-import supabase from "./connection.js"
+import supabase from "./connection"
 
 export async function signUpWithPassword(email: string, password: string, name: string) {
     return supabase.auth.signUp({

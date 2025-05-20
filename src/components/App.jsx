@@ -1,5 +1,6 @@
 //import useUpdatingClock from 'hooks/useUpdatingClock'
 import * as Query from '../adzuna/query'
+import * as Parse from '../adzuna/parse'
 
 export default function App() {
   //const {hour, minutes, seconds, amPm} = useUpdatingClock()

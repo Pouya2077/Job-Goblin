@@ -1,5 +1,5 @@
-import "../supabase/connection.js"
-import supabase from "../supabase/connection.js"
+import "../supabase/connection"
+import supabase from "../supabase/connection"
 import { AxiosPromise, AxiosResponse } from "axios";
 
 type Job = {

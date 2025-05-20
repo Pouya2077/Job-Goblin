@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import dotenv from 'dotenv-webpack'
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -11,6 +12,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import AfterCompilePlugin from './after-compile-plugin.js';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import DotenvWebpackPlugin from 'dotenv-webpack';
 
 const { NODE_ENV, DEV_SERVER_PORT, API, API_PORT, API_WEBPACK } = process.env;
 
@@ -362,6 +364,7 @@ export default (env, argv) => ({
       Make global variables available to the app.
       Needed in order to use the production-ready minified version of React.
     */
+    new DotenvWebpackPlugin(),
     new webpack.DefinePlugin({
       /*
         https://bit.ly/3mB98cM - Convenience variables.
