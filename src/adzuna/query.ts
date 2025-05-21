@@ -10,7 +10,7 @@ const apiUrl = 'http://api.adzuna.com/v1/api/jobs/ca/search/1?';
 /** 
  * @param {number} num_results - number of fetched results
  * @param {string} job         - searched job 
- * @returns {AxiosPromise}    - JSON object of fetched jobs
+ * @returns {AxiosPromise}     - JSON object of fetched jobs
  */
 export async function simpleQuery(num_results: number, job: string) {
     return axios.get(apiUrl, {
