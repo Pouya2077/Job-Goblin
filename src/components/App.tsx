@@ -2,15 +2,18 @@ import * as Query from '../adzuna/query'
 import * as Parse from '../adzuna/parse'
 import * as Auth from '../supabase/auth'
 import React, {useState, useEffect} from 'react'
-import { AxiosPromise, AxiosResponse } from "axios"
+import {Job} from "../types"
+
 
 export default function App() {
-    const [result, newResult] = useState(null);
+    const [result, newResult] = useState<Job | null>(null);
+    let job: Job
 
     useEffect(() => {
         Query.simpleQuery(10, "software developer")
         .then(response => {
-            newResult(response.data.results[0].title);
+            job = response.data.results[0];
+            newResult(job);
         })
         .catch(error => {
             console.log("Fetched data is corrupted: ", error.data.error);
@@ -33,7 +36,7 @@ export default function App() {
             <header>
                 <h1>
                     By Pouya Khoshnavazi
-                    <p>{result}</p>
+                    <p>{result.title}</p>
                 </h1>
             </header>
         </div>

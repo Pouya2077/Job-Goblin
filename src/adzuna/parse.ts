@@ -1,12 +1,8 @@
 import "../supabase/connection"
 import supabase from "../supabase/connection"
 import { AxiosPromise, AxiosResponse } from "axios";
+import {Job} from "../types"
 
-type Job = {
-    id: string, 
-    title: string,
-    jsonb: any;
-}
 
 async function insertInTable(job: Job, table: string) {
     return supabase.from(table).insert({
