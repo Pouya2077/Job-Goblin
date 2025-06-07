@@ -15,14 +15,15 @@ import './styles/styles.scss'
 // Import React.
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 // Import our top-level component.
 import App from 'components/App'
 
 // Mount our app.
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.querySelector('#app'),
 )
