@@ -14,7 +14,6 @@ function LoginPanel() {
         <div>
             <h1>Input Username and Password</h1>
             <form> 
-                <header>Username</header>
                 <input required type="text" onChange={(event) => {setInputEmail(event.target.value)}}/>
                 <input required type="password" onChange={(event) => {setInputPassword(event.target.value)}}/>
                 <button type="submit" onSubmit={loginUser}>Login</button>

@@ -8,7 +8,8 @@ function SignUpPanel() {
     const [inputName, setInputName] = useState("");
 
     const signUpUser = () => {
-
+        console.log(inputEmail);
+        Auth.signUpWithPassword(inputEmail, inputPassword, inputName); //Auth handles exceptions
     }
 
     return (
@@ -18,7 +19,7 @@ function SignUpPanel() {
                 <input required type="text" onChange={(event) => {setInputEmail(event.target.value)}}/>
                 <input required type="password" onChange={(event) => {setInputPassword(event.target.value)}}/>
                 <input required type="text" onChange={(event) => {setInputName(event.target.value)}}/>
-                <button type="submit" onSubmit={signUpUser}>SignUp</button>
+                <button type="submit" onClick={signUpUser}>SignUp</button>
             </form>
         </div>
     )
