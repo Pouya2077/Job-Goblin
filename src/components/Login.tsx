@@ -1,35 +1,29 @@
 import React from "react"
-import {useNavigate} from "react-router-dom"
 import {useEffect, useState} from "react"
 import * as Auth from "./../supabase/auth"
 
 function LoginPanel() {
-    let navigate = useNavigate();
-    let email: string;
-    let password: string;
-    const [inputValue, setInputValue] = useState("");
+    const [inputEmail, setInputEmail] = useState("");
+    const [inputPassword, setInputPassword] = useState("");
 
-    const inputChanged = (event: any) => {
-        if (event.target.value != "") {
-            setInputValue(event.target.value);
-        }
+    const loginUser = () => {
+        console.log("Well that's good innit??");
+        // run the supabase authentication
     }
-
-    useEffect(() => {
-        if (inputValue != "") {
-            navigate("/signup");
-        }
-    }, [inputValue]);
 
     return (
         <div>
-            <h1>Username</h1>
-            <input type="text" value={inputValue} onChange={inputChanged} />
+            <h1>Input Username and Password</h1>
 
-            <h2>Password</h2>
-            <input type="password" />
+            <form> 
+                <header>Username</header>
+                <input type="text" onChange={(event) => {setInputEmail(event.target.value)}}/>
+                <input type="password" onChange={(event) => {setInputPassword(event.target.value)}}/>
+                <button type="submit" onClick={loginUser}>Login</button>
+            </form>
         </div>
     )
+
 }
 
 export default function Login() {
