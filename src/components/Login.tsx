@@ -7,19 +7,17 @@ function LoginPanel() {
     const [inputPassword, setInputPassword] = useState("");
 
     const loginUser = () => {
-        console.log("Well that's good innit??");
-        // run the supabase authentication
+        Auth.signInWithPassword(inputEmail, inputPassword); //Auth will handle exceptions
     }
 
     return (
         <div>
             <h1>Input Username and Password</h1>
-
             <form> 
                 <header>Username</header>
-                <input type="text" onChange={(event) => {setInputEmail(event.target.value)}}/>
-                <input type="password" onChange={(event) => {setInputPassword(event.target.value)}}/>
-                <button type="submit" onClick={loginUser}>Login</button>
+                <input required type="text" onChange={(event) => {setInputEmail(event.target.value)}}/>
+                <input required type="password" onChange={(event) => {setInputPassword(event.target.value)}}/>
+                <button type="submit" onSubmit={loginUser}>Login</button>
             </form>
         </div>
     )
@@ -27,8 +25,6 @@ function LoginPanel() {
 }
 
 export default function Login() {
-
-
     return (
         <div>
             <h1>Login!</h1>
