@@ -7,9 +7,16 @@ function SignUpPanel() {
     const [inputPassword, setInputPassword] = useState("");
     const [inputName, setInputName] = useState("");
 
-    const signUpUser = () => {
-        console.log(inputEmail);
-        Auth.signUpWithPassword(inputEmail, inputPassword, inputName); //Auth handles exceptions
+    const signUpUser = async () => {
+        const {data, error} = await Auth.signUpWithPassword(inputEmail, inputPassword, inputName);
+
+        if (error) {
+            console.log("Error ", error.name, ": ", error.code, " when signing up.");
+        }
+
+        if (data) {
+            console.log("Successful Sign-Up!");
+        }
     }
 
     return (

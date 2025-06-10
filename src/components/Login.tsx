@@ -5,9 +5,20 @@ import * as Auth from "./../supabase/auth"
 function LoginPanel() {
     const [inputEmail, setInputEmail] = useState("");
     const [inputPassword, setInputPassword] = useState("");
+    const [message, setMessage] = useState("");
 
-    const loginUser = () => {
-        Auth.signInWithPassword(inputEmail, inputPassword); //Auth will handle exceptions
+    const loginUser = async () => {
+        const {data, error} = await Auth.signInWithPassword(inputEmail, inputPassword); 
+        
+        if (error) {
+            console.log("Error ", error.name, ": ", error.code, " when logging in.");
+        }
+
+        if (data) {
+            console.log("Successful login.");
+            setMessage("Successful Login!");
+        }
+
     }
 
     return (
@@ -18,6 +29,7 @@ function LoginPanel() {
                 <input required type="password" onChange={(event) => {setInputPassword(event.target.value)}}/>
                 <button type="submit" onSubmit={loginUser}>Login</button>
             </form>
+            <title>{message}</title>
         </div>
     )
 
