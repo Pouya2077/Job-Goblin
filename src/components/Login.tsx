@@ -7,14 +7,14 @@ function LoginPanel() {
     const [inputPassword, setInputPassword] = useState("");
     const [message, setMessage] = useState("");
 
-    const loginUser = async () => {
+    const loginUser = async (event: any) => {
+        event.preventDefault();
         const {data, error} = await Auth.signInWithPassword(inputEmail, inputPassword); 
         
         if (error) {
             console.log("Error ", error.name, ": ", error.code, " when logging in.");
-        }
-
-        if (data) {
+            console.log(error.message);
+        } else if (data) {
             console.log("Successful login.");
             setMessage("Successful Login!");
         }
@@ -24,10 +24,10 @@ function LoginPanel() {
     return (
         <div>
             <h1>Input Username and Password</h1>
-            <form> 
+            <form onSubmit={loginUser}> 
                 <input required type="text" onChange={(event) => {setInputEmail(event.target.value)}}/>
                 <input required type="password" onChange={(event) => {setInputPassword(event.target.value)}}/>
-                <button type="submit" onSubmit={loginUser}>Login</button>
+                <button type="submit">Login</button>
             </form>
             <title>{message}</title>
         </div>
