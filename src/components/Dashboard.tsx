@@ -5,10 +5,11 @@ import {useState} from "react"
  * @description will prompt user to select company, then
  *              selected company will be loaded by CompanyPanel
  */
-function CompanySelector() {
+function CompanySelector({onSelect}: {onSelect: (company: string) => void}) {
         return (
             <div>
                 <title>Companies:</title>
+                <button onClick={() => onSelect("Adzuna")}>Adzuna</button>
             </div>
         )
 
@@ -18,11 +19,20 @@ function CompanySelector() {
  * @description will load in selected company 
  *              onto dashboard
  */
-function CompanyPanel({company}: {company: string}) {
+function CompanyPanel({company, onBack}: {company: string, onBack: () => void}) {
     switch (company) {
+        case "Adzuna":
+            return (
+                <div>
+                    <h1>Adzuna</h1>
+                    <button onClick={onBack}>Back</button>
+                </div>
+            )
+
         default: return (
             <div>
                 <h1>No Company Selected</h1>
+                <button onClick={onBack}></button>
             </div>
         )
 
@@ -36,15 +46,14 @@ function CompanyPanel({company}: {company: string}) {
  *              parameters are selected by the user
  */
 export default function Dashboard() {
-    const [companyName, setCompanyName] = useState("");
+    const [companyName, setCompanyName] = useState<string | null>(null);
 
     return (
         <div>
-            <header>
-                <h1>Welcome </h1>
-                <CompanySelector/>
-                <CompanyPanel company={companyName}/>
-            </header>
+            <h1>Welcome to the Dashboard</h1>
+            {companyName === null ? 
+            <CompanySelector onSelect={(company: string) => setCompanyName(company)}/> : 
+            <CompanyPanel company={companyName} onBack={() => setCompanyName(null)}/>}
         </div>
     )
 }
