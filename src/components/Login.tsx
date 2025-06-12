@@ -1,14 +1,15 @@
 import React from "react"
-import {useEffect, useState} from "react"
+import {useState} from "react"
 import * as Auth from "./../supabase/auth"
+import {useNavigate} from "react-router-dom"
 
 function LoginPanel() {
     const [inputEmail, setInputEmail] = useState("");
     const [inputPassword, setInputPassword] = useState("");
-    const [message, setMessage] = useState("");
+    const navigate = useNavigate();
 
     const loginUser = async (event: any) => {
-        event.preventDefault();
+        event.preventDefault(); //prevent page refresh
         const {data, error} = await Auth.signInWithPassword(inputEmail, inputPassword); 
         
         if (error) {
@@ -16,20 +17,20 @@ function LoginPanel() {
             console.log(error.message);
         } else if (data) {
             console.log("Successful login.");
-            setMessage("Successful Login!");
+            alert("Login Successful!");
+            navigate("/dashboard");
         }
 
     }
 
     return (
         <div>
-            <h1>Input Username and Password</h1>
+            <h1>Input Email and Password</h1>
             <form onSubmit={loginUser}> 
                 <input required type="text" onChange={(event) => {setInputEmail(event.target.value)}}/>
                 <input required type="password" onChange={(event) => {setInputPassword(event.target.value)}}/>
                 <button type="submit">Login</button>
             </form>
-            <title>{message}</title>
         </div>
     )
 
