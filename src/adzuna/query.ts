@@ -3,16 +3,16 @@ import * as Constants from "./constants"
 // import dotenv from 'dotenv'
 // dotenv.config()
 
-const appID = process.env.ADZUNA_ID;
-const apiKey = process.env.ADZUNA_KEY;
-const apiUrl = 'http://api.adzuna.com/v1/api/jobs/ca/search/1?';
-
 /** 
  * @param {number} num_results - number of fetched results
  * @param {string} job         - searched job 
- * @returns {AxiosResponse}     - JSON object of fetched jobs
+ * @returns {AxiosResponse}    - JSON object of fetched jobs
  */
 export async function simpleQuery(num_results: number, job: string) {
+    const appID = process.env.ADZUNA_ID;
+    const apiKey = process.env.ADZUNA_KEY;
+    const apiUrl = 'http://api.adzuna.com/v1/api/jobs/ca/search/1?';
+
     return axios.get(apiUrl, {
         params: {
             app_id: appID, 
