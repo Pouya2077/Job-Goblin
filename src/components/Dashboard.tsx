@@ -54,7 +54,7 @@ export default function Dashboard() {
         <div>
             <h1>Welcome to the Dashboard</h1>
             {companyName === null ? 
-            <CompanySelector onSelect={(company: string) => setCompanyName(company)}/> : 
+            <CompanySelector onSelect={(company: string) => {setCompanyName(company)}}/> : 
             <CompanyPanel company={companyName} onBack={() => setCompanyName(null)}/>}
         </div>
     )
