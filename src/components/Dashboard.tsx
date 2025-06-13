@@ -1,5 +1,6 @@
 import React from "react"
 import {useState} from "react"
+import Adzuna from "./Adzuna"
 
 /**
  * @description will prompt user to select company, then
@@ -26,6 +27,7 @@ function CompanyPanel({company, onBack}: {company: string, onBack: () => void}) 
                 <div>
                     <h1>Adzuna</h1>
                     <button onClick={onBack}>Back</button>
+                    <Adzuna/>
                 </div>
             )
 
