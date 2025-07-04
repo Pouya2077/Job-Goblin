@@ -1,0 +1,5 @@
+# DEPENDENCIES 
+.venv 
+
+# SENSITIVE DATA 
+.env
