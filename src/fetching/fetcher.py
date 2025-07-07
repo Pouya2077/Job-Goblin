@@ -23,7 +23,9 @@ class Fetcher:
         auth_params = get_auth("ADZUNA")
         return requests.get(self.BASE_URL, {**self.params, **auth_params}, timeout=self.TIMEOUT)
 
-    def other_params(self, params):
+    def other_params(self, params=None):
+        if params is None:
+            params = {}
         auth_params = get_auth("ADZUNA")
         return requests.get(self.BASE_URL, {**self.params, **auth_params, **params}, timeout=self.TIMEOUT)
     

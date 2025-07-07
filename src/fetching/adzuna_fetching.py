@@ -11,4 +11,4 @@ RESULTS_PER_PAGE = 1
 Adzuna = Fetcher({"what": WHAT, "results_per_page": RESULTS_PER_PAGE}, "ADZUNA")
 
 print(Adzuna.canada_jobs())
-print(Adzuna.other_params({"where": "Vancouver", "company": "Amazon"}))
+print(Adzuna.other_params())

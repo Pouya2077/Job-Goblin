@@ -1,5 +1,7 @@
 # DEPENDENCIES 
 .venv 
+__pycache__
 
 # SENSITIVE DATA 
 .env
+

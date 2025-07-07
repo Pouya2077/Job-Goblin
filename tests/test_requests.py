@@ -1,5 +1,5 @@
-import requests
 import os
+import requests
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,3 +16,4 @@ response = requests.get(URL, {
 
 print(response.status_code)
 print(response.json())
+
