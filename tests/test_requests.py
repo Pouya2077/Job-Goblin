@@ -10,7 +10,7 @@ APP_KEY = os.getenv("ADZUNA_KEY")
 response = requests.get(URL, {
     "app_id": APP_ID,
     "app_key": APP_KEY, 
-    "results_per_page": 2, 
+    "results_per_page": 1, 
     "what": "software developer"
 })
 
