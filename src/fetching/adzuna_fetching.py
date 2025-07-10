@@ -10,3 +10,4 @@ Adzuna = Fetcher(BASE_URL, "ADZUNA", {"what": WHAT, "results_per_page": RESULTS_
 
 print(Adzuna.canada_jobs())
 print(Adzuna.other_params())
+print(Adzuna.get_name())

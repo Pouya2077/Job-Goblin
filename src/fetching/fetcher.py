@@ -12,22 +12,31 @@ class Fetcher:
     TIMEOUT = 2
 
     def __init__(self, url, name, params):
-        self.url = url
-        self.name = name
-        self.params = params
+        self.__url = url
+        self.__name = name
+        self.__params = params
+      
+    def get_url(self):
+        return self.__url
+
+    def get_name(self):
+        return self.__name
+
+    def get_params(self):
+        return self.__params
 
     def canada_jobs(self):
         """ Return jobs in Canada """
 
-        auth_params = get_auth(self.name)
-        return requests.get(self.url, {**self.params, **auth_params}, timeout=self.TIMEOUT)
+        auth_params = get_auth(self.__name)
+        return requests.get(self.__url, {**self.__params, **auth_params}, timeout=self.TIMEOUT)
 
     def other_params(self, params=None):
         """ Specify extra parameters """
 
         if params is None:
             params = {}
-        auth_params = get_auth(self.name)
+        auth_params = get_auth(self.__name)
 
-        params = {**self.params, **auth_params, **params}
-        return requests.get(self.url, params, timeout=self.TIMEOUT)
+        params = {**self.__params, **auth_params, **params}
+        return requests.get(self.__url, params, timeout=self.TIMEOUT)
