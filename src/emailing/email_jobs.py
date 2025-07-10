@@ -9,17 +9,20 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-password = os.getenv("APP_PASSWORD")
-sender_email = os.getenv("FROM_EMAIL")
-receiver_email = os.getenv("TO_EMAIL")
+PASSWORD = os.getenv("APP_PASSWORD")
+SENDER_EMAIL = os.getenv("FROM_EMAIL")
+RECEIVER_EMAIL = os.getenv("TO_EMAIL")
 
-port = 465
-context = ssl.create_default_context()
-message = """\
-Subject: Test Email
+def email_jobs():
+    """ Basic email jobs function, wide variety of job type. """
 
-This message was sent as a test by Job Goblin."""
+    port = 465
+    context = ssl.create_default_context()
+    message = """\
+    Subject: Test Email
 
-with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
-    server.login(sender_email, password)
-    server.sendmail(sender_email, receiver_email, message)
+    This message was sent as a test by Job Goblin."""
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+        server.login(SENDER_EMAIL, PASSWORD)
+        server.sendmail(SENDER_EMAIL, RECEIVER_EMAIL, message)
