@@ -15,7 +15,7 @@ class Fetcher:
         self.__url = url
         self.__name = name
         self.__params = params
-      
+
     def get_url(self):
         """ Get private url """
         return self.__url

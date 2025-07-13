@@ -22,4 +22,3 @@ def email_jobs(message):
     with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
         server.login(SENDER_EMAIL, PASSWORD)
         server.sendmail(SENDER_EMAIL, RECEIVER_EMAIL, message)
-        

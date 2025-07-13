@@ -1,4 +1,4 @@
-# """ Experimenting with basic email capabilities """
+""" Experimenting with basic email capabilities """
 
 from fetching.auth import get_auth
 from fetching.fetcher import Fetcher
@@ -22,10 +22,7 @@ Subject: {result["title"]} job at {result["company"]["display_name"]}
 
 description: {result["description"]}
 url:         {result["redirect_url"]}"""
-        
+
 message_bytes = message.encode("utf-8")
 
 email_jobs(message_bytes)
-
-
-

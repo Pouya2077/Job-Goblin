@@ -1,3 +1,5 @@
+""" Experimenting with basic API requesting. """
+
 import os
 import requests
 from dotenv import load_dotenv
@@ -11,9 +13,8 @@ response = requests.get(URL, {
     "app_id": APP_ID,
     "app_key": APP_KEY, 
     "results_per_page": 1, 
-    "what": "software developer"
+    "what": "software developer",
 })
 
 print(response.status_code)
 print(response.json())
-
