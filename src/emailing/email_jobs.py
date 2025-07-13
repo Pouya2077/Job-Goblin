@@ -18,6 +18,7 @@ def email_jobs():
 
     port = 465
     context = ssl.create_default_context()
+    # TODO come back and change messages when jobs 
     message = """\
     Subject: Test Email
 

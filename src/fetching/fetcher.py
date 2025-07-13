@@ -1,7 +1,7 @@
 """ Class for fetching job data from API """
 
 import requests
-from auth import get_auth
+from fetching.auth import get_auth
 
 class Fetcher:
     """ Class will be responsible for fetching from a specific API
@@ -17,12 +17,15 @@ class Fetcher:
         self.__params = params
       
     def get_url(self):
+        """ Get private url """
         return self.__url
 
     def get_name(self):
+        """ Get private name """
         return self.__name
 
     def get_params(self):
+        """ Get private params """
         return self.__params
 
     def canada_jobs(self):

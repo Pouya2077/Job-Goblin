@@ -1,7 +1,10 @@
 # DEPENDENCIES 
 .venv 
-__pycache__
 
 # SENSITIVE DATA 
 .env
+
+# IMPORT INFORMATOIN
+__pycache__
+*.egg-info
 

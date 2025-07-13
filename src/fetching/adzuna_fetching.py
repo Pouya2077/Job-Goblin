@@ -1,6 +1,6 @@
 """ Script responsible for fetching Adzuna jobs """
 
-from .fetcher import Fetcher
+from fetcher import Fetcher
 
 BASE_URL = "http://api.adzuna.com/v1/api/jobs/ca/search/1?"
 WHAT = "software developer"
