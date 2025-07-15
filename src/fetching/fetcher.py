@@ -9,7 +9,7 @@ class Fetcher:
         
         Will NOT be responsible for validating or parsing response. """
 
-    TIMEOUT = 2
+    __TIMEOUT = 2
 
     def __init__(self, url, name, params):
         self.__url = url
@@ -28,13 +28,13 @@ class Fetcher:
         """ Get private params """
         return self.__params
 
-    def canada_jobs(self):
+    def get_jobs(self):
         """ Return jobs in Canada """
 
         auth_params = get_auth(self.__name)
-        return requests.get(self.__url, {**self.__params, **auth_params}, timeout=self.TIMEOUT)
+        return requests.get(self.__url, {**self.__params, **auth_params}, timeout=self.__TIMEOUT)
 
-    def other_params(self, params=None):
+    def jobs_by_params(self, params=None):
         """ Specify extra parameters """
 
         if params is None:
@@ -42,4 +42,4 @@ class Fetcher:
         auth_params = get_auth(self.__name)
 
         params = {**self.__params, **auth_params, **params}
-        return requests.get(self.__url, params, timeout=self.TIMEOUT)
+        return requests.get(self.__url, params, timeout=self.__TIMEOUT)
