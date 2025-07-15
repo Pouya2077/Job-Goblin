@@ -2,7 +2,7 @@
 
 from fetching.auth import get_auth
 from fetching.fetcher import Fetcher
-from emailing.email_jobs import email_jobs
+from emailing.email import email_message
 
 BASE_URL = "http://api.adzuna.com/v1/api/jobs/ca/search/1?"
 WHAT = "software developer"
@@ -10,7 +10,7 @@ RESULTS_PER_PAGE = 1
 
 Adzuna = Fetcher(BASE_URL, "ADZUNA", {"what": WHAT, "results_per_page": RESULTS_PER_PAGE})
 
-response = Adzuna.canada_jobs()
+response = Adzuna.get_jobs()
 result = response.json()["results"][0]
 
 print(response)
@@ -25,4 +25,4 @@ url:         {result["redirect_url"]}"""
 
 message_bytes = message.encode("utf-8")
 
-email_jobs(message_bytes)
+email_message(message_bytes)

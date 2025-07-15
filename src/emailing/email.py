@@ -13,7 +13,7 @@ PASSWORD = os.getenv("APP_PASSWORD")
 SENDER_EMAIL = os.getenv("FROM_EMAIL")
 RECEIVER_EMAIL = os.getenv("TO_EMAIL")
 
-def email_jobs(message):
+def email_message(message):
     """ Only sends email, does not create message. """
 
     port = 465
