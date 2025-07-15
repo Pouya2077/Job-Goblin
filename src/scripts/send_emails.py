@@ -1,0 +1,1 @@
+""" Email job information to user """

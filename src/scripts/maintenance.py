@@ -1,0 +1,1 @@
+""" Maintain and delete jobs in database """
