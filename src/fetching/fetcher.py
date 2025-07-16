@@ -2,12 +2,13 @@
 
 import requests
 from fetching.auth import get_auth
+from database import query
 
 class Fetcher:
     """ Class will be responsible for fetching from a specific API
         by name, from a provided endpoint. 
         
-        Will NOT be responsible for validating or parsing response. """
+        Responsible for storing jobs it has fetched in db. """
 
     __TIMEOUT = 2
 
@@ -43,3 +44,6 @@ class Fetcher:
 
         params = {**self.__params, **auth_params, **params}
         return requests.get(self.__url, params, timeout=self.__TIMEOUT)
+    
+    #TODO add capability to store using supabase functions after fetching jobs
+    

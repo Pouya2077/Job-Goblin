@@ -16,6 +16,7 @@ result = response.json()["results"][0]
 print(response)
 print(response.json())
 print(response.json()["results"][0]["title"])
+print(result["location"])
 
 message = f"""\
 Subject: {result["title"]} job at {result["company"]["display_name"]}
