@@ -1,1 +1,1 @@
-""" Maintain and delete jobs in database """
+""" Script maintains and deletes jobs in database """

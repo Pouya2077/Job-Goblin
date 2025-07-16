@@ -1,4 +1,4 @@
-""" Fetching and parsing Adzuna jobs """
+""" Script fetches, parses, and stores Adzuna jobs """
 
 from fetching import Fetcher, get_auth
 from emailing import email_message

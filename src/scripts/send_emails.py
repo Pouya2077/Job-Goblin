@@ -1,1 +1,1 @@
-""" Email job information to user """
+""" Script emails messages to user """

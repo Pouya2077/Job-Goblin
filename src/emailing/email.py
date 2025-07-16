@@ -1,6 +1,4 @@
-""" Email user with job data """
-
-## For now will just email placeholder msg
+""" Email logic """
 
 import os
 import smtplib

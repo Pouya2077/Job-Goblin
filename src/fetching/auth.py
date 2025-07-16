@@ -1,4 +1,4 @@
-""" Return authentication variables for specific API """
+""" Return auth variables for appropriate API """
 import os
 from dotenv import load_dotenv
 
