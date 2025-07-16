@@ -2,6 +2,7 @@
 
 from fetching import Fetcher, get_auth
 from emailing import email_message
+from database import supabase
 
 DEFAULT_PARAMS = {"results_per_page": 1, 
                   "what": "software developer",
