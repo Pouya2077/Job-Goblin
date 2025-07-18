@@ -20,3 +20,10 @@ def email_message(message):
     with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
         server.login(SENDER_EMAIL, PASSWORD)
         server.sendmail(SENDER_EMAIL, RECEIVER_EMAIL, message)
+        
+def construct_message():
+    """ Construct message based on jobs from database """
+    #TODO determine which jobs to consider for message 
+    #TODO construction of the message 
+    
+    return ""
