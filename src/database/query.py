@@ -13,10 +13,20 @@ API_FIELD_NAMES = {
     }
 }
 
-def get_api_field(field_names, field):
+def get_api_field(job, field):
     """ Return appropriate job field for api """
+    value = None
+    keys = field.split(".")
 
-    return field_names[field]
+    for key in keys:
+        if value is None and key in job:
+            value = job[key]
+        elif isinstance(value, dict):
+            value = value[key]
+        else:
+            value = None
+
+    return value
 
 def insert(name, job):
     """ Insert job into supabase db """
@@ -26,11 +36,11 @@ def insert(name, job):
     supabase.table("jobs").insert(
 
         {
-        "title":        get_api_field(field_names, "title"), 
-        "company":      get_api_field(field_names, "company"),
-        "url":          get_api_field(field_names, "url"),
-        "description":  get_api_field(field_names, "description"), 
-        "location":     get_api_field(field_names, "location"),
+        "title":        get_api_field(job, field_names["title"]), 
+        "company":      get_api_field(job, field_names["company"]),
+        "url":          get_api_field(job, field_names["url"]),
+        "description":  get_api_field(job, field_names["description"]), 
+        "location":     get_api_field(job, field_names["location"]),
         "source_api":   name,
         }).execute()
 
