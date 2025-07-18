@@ -45,5 +45,5 @@ class Fetcher:
         params = {**self.__params, **auth_params, **params}
         return requests.get(self.__url, params, timeout=self.__TIMEOUT)
     
-    #TODO add capability to store using supabase functions after fetching jobs
+    #TODO add capability to store using query functions after fetching jobs
     

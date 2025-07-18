@@ -16,4 +16,5 @@ print(result)
 
 query.insert("adzuna", response.json()["results"][0])
 query.insert("adzuna", response.json()["results"][1])
+query.insert("adzuna", {})
 

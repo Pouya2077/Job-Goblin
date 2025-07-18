@@ -1,32 +1,7 @@
 """ INSERT, GET, and DELETE for supabase backend """
 
-from database import supabase
-
-API_FIELD_NAMES = {
-    #Dict to give JSON fields name for diff API responses
-    "adzuna": {
-        "title": "title", 
-        "company": "company.display_name", 
-        "url": "redirect_url", 
-        "description": "description", 
-        "location": "location.display_name",
-    }
-}
-
-def get_api_field(job, field):
-    """ Return appropriate job field for api """
-    value = None
-    keys = field.split(".")
-
-    for key in keys:
-        if value is None and key in job:
-            value = job[key]
-        elif isinstance(value, dict):
-            value = value[key]
-        else:
-            value = None
-
-    return value
+from database.client import supabase
+from database.job_mappings import API_FIELD_NAMES, get_api_field
 
 def insert(name, job):
     """ Insert job into supabase db """
