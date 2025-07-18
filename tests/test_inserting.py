@@ -14,6 +14,6 @@ response = Adzuna.get_jobs()
 result = response.json()["results"][0]
 print(result)
 
-query.insert(result)
-
+query.insert("adzuna", response.json()["results"][0])
+query.insert("adzuna", response.json()["results"][1])
 
