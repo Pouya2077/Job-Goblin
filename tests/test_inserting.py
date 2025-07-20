@@ -12,7 +12,7 @@ Adzuna = Fetcher(BASE_URL, "ADZUNA", {"what": WHAT, "results_per_page": RESULTS_
 
 response = Adzuna.get_jobs()
 result = response.json()["results"][0]
-print(result)
+# print(result)
 
 query.insert("adzuna", response.json()["results"][0])
 query.insert("adzuna", response.json()["results"][1])

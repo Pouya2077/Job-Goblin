@@ -11,10 +11,10 @@ API_FIELD_NAMES = {
     }
 }
 
-def get_api_field(job, field):
+def get_api_field(job, path):
     """ Return appropriate job field for api """
     value = {}
-    keys = field.split(".")
+    keys = path.split(".")
 
     for key in keys:
         if not value and key in job:

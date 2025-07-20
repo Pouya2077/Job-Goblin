@@ -4,13 +4,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def get_auth(name):
+def get_auth(api_name):
     """ Return .env variables for 'name' API """
-    name = name.upper()
+    api_name = api_name.upper()
 
-    if os.getenv(f"{name}_ID") is None:
-        return {"app_key": os.getenv(f"{name}_KEY")}
+    if os.getenv(f"{api_name}_ID") is None:
+        return {"app_key": os.getenv(f"{api_name}_KEY")}
 
-    return {"app_id": os.getenv(f"{name}_ID"),
-            "app_key": os.getenv(f"{name}_KEY")}
+    return {"app_id": os.getenv(f"{api_name}_ID"),
+            "app_key": os.getenv(f"{api_name}_KEY")}
 

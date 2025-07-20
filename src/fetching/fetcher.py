@@ -5,8 +5,7 @@ from fetching.auth import get_auth
 from database import query
 
 class Fetcher:
-    """ Class will be responsible for fetching from a specific API
-        by name, from a provided endpoint. 
+    """ Class represents fetching and storing for endpoint of a job API.
         
         Responsible for storing jobs it has fetched in db. """
 
