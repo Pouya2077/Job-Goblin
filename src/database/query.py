@@ -20,10 +20,10 @@ def insert(api_name, job):
         "source_api":   api_name,
         }).execute()
 
-def fetch_jobs(api_name, num_jobs):
+def fetch_jobs(api_name, num_jobs=0):
     """ Fetch num latest jobs from db """
-    if num_jobs > MAX_JOBS:
-        num_jobs = MAX_JOBS
+    if num_jobs > MAX_FETCH:
+        num_jobs = MAX_FETCH
 
     response = supabase.table(TABLE)\
         .select("*")\
@@ -33,19 +33,37 @@ def fetch_jobs(api_name, num_jobs):
 
     return response.data
 
-def fetch_filter_jobs(api_name, job_info):
+def fetch_filter_jobs(api_name, num_jobs=0, title=None, company=None, location=None):
     """ Fetch specific job from db """
     #TODO
-    
+
     return None
 
-def delete_num_jobs(api_name, num_jobs):
+def delete_jobs(api_name, num_jobs=0):
     """ Delete num oldest jobs from db """
-    #TODO
-    
-    return None 
+    if num_jobs > MAX_DELETE:
+        num_jobs = MAX_DELETE
 
-def delete_job(api_name, job_info):
+    response = supabase.table(TABLE)\
+        .select("id")\
+        .eq("source_api", f"{api_name.lower()}")\
+        .order("created_at", desc=True)\
+        .limit(num_jobs)\
+        .execute()
+        
+    jobs = response.data
+    if not jobs:
+        return None
+    
+    job_ids = [job["id"] for job in jobs]
+    result = supabase.table(TABLE)\
+        .delete()\
+        .in_("id", job_ids)\
+        .execute()
+
+    return result
+
+def delete_filter_jobs(api_name, num_jobs=0, title=None, company=None, location=None):
     """ Delete specific job from db """
     #TODO
     
