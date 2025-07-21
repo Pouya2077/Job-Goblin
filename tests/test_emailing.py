@@ -3,6 +3,7 @@
 from fetching.auth import get_auth
 from fetching.fetcher import Fetcher
 from emailing.email import email_message
+from constants import *
 
 BASE_URL = "http://api.adzuna.com/v1/api/jobs/ca/search/1?"
 WHAT = "software developer"
