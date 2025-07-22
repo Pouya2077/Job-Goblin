@@ -20,6 +20,9 @@ result = response.json()["results"]
 
 for job in result:
     query.insert("adzuna", result[result.index(job)])
+
 query.insert("adzuna", {})
-query.insert("test", {})
+result = query.insert("test", {})
+
+print(result)
 

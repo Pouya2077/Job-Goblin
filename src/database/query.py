@@ -10,7 +10,7 @@ def insert(api_name, job):
     field_names = API_FIELD_NAMES[api_name]
 
     return supabase.table(TABLE).insert(
-
+                            #entires are case sensitive (includes fetching and deleting filters)
             {
             "title":        get_api_field(job, field_names["title"]), 
             "company":      get_api_field(job, field_names["company"]),
@@ -106,5 +106,25 @@ def delete_filter_jobs(api_name, num_jobs=0, title=None, company=None, location=
                 .delete()\
                 .in_("id", job_ids)\
                 .execute()
+
+    return result.data
+
+def delete_all_jobs(api_name=None):
+    """ Not used by scripts, for manual maintenance """
+
+    query = supabase.table(TABLE).select("id")
+
+    if api_name is not None:
+        query = query.eq("source_api", f"{api_name.lower()}")
+
+    response = query.execute()
+    jobs = response.data
+
+    job_ids = [job["id"] for job in jobs]
+
+    result = supabase.table(TABLE)\
+            .delete()\
+            .in_("id", job_ids)\
+            .execute()
 
     return result.data

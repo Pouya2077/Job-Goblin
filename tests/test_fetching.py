@@ -2,15 +2,20 @@
 
 from database import query
 
-response0 = query.fetch_jobs("adzuna", 5)
-response1 = query.fetch_jobs("test", 2)
+response = query.fetch_jobs("adzuna", 10)
+# print(response)
 
-# print(response0[0])
-# print(response0[2])
-# print(response1[0])
+response = query.fetch_filter_jobs("adzuna", 2, None, None, "Ontario, Canada")
+# print(response)
 
-response2 = query.delete_jobs("test", 1)
-# print(response2)
+# response = query.delete_all_jobs()
+# print(response)
 
-response3 = query.delete_filter_jobs("adzuna", 9, "Software Developer")
-print(response3)
+# response = query.delete_all_jobs("test")
+# print(response)
+
+# response = query.delete_jobs("adzuna", 4)
+# print(response)
+
+response = query.delete_filter_jobs("adzuna", 0, "Software Developer,", "vTech Solution", None)
+print(response)
