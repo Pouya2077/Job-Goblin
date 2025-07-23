@@ -1,3 +1,5 @@
+""" Experimenting with Fetcher class """
+
 from fetching import Fetcher 
 from database import query
 
@@ -13,3 +15,15 @@ Adzuna = Fetcher(BASE_URL, "ADZUNA", {"what": WHAT, "results_per_page": RESULTS_
 
 # response = Adzuna.jobs_by_params({"where": "Ottawa, Ontario"})
 # print(len(response.json()["results"]))
+
+print(Adzuna.get_name())
+print(Adzuna.get_url())
+print(Adzuna.get_params())
+
+job = {
+    "title": "Software Developer", 
+    "company": "Test Corporation", 
+    "description": "test company", 
+    "location": "test city",
+}
+print(Adzuna.insert_jobs([job]))
