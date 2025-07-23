@@ -28,7 +28,7 @@ class Fetcher:
         """ Get private params """
         return self.__params
 
-    def insert_jobs(self, jobs):
+    def __insert_jobs(self, jobs):
         """ Insert an array of jobs into db """
 
         results = []
@@ -46,7 +46,7 @@ class Fetcher:
 
         response = requests.get(self.__url, params, timeout=self.__TIMEOUT)
 
-        self.insert_jobs(response.json()["results"])
+        self.__insert_jobs(response.json()["results"])
 
         return response
 
@@ -61,7 +61,7 @@ class Fetcher:
 
         response = requests.get(self.__url, params, timeout=self.__TIMEOUT)
 
-        self.insert_jobs(response.json()["results"])
+        self.__insert_jobs(response.json()["results"])
 
         return response
 
