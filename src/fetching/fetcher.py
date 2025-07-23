@@ -5,7 +5,7 @@ from fetching.auth import get_auth
 from database import query
 
 class Fetcher:
-    """ Class represents fetching and storing for endpoint of a job API.
+    """ Class represents fetching and storing for an API endpoint.
         
         Responsible for storing jobs it has fetched in db. """
 
@@ -28,21 +28,40 @@ class Fetcher:
         """ Get private params """
         return self.__params
 
+    def insert_jobs(self, jobs):
+        """ Insert an array of jobs into db """
+
+        results = []
+
+        for job in jobs:
+            results[job.index()] = query.insert(self.get_name().lower(), job)
+
+        return results
+
     def get_jobs(self):
         """ Return jobs in Canada """
 
         auth_params = get_auth(self.__name)
-        return requests.get(self.__url, {**self.__params, **auth_params}, timeout=self.__TIMEOUT)
+        params = {**self.__params, **auth_params}
+
+        response = requests.get(self.__url, params, timeout=self.__TIMEOUT)
+
+        self.insert_jobs(response.json()["results"])
+
+        return response
 
     def jobs_by_params(self, params=None):
         """ Specify extra parameters """
 
         if params is None:
             params = {}
-        auth_params = get_auth(self.__name)
 
+        auth_params = get_auth(self.__name)
         params = {**self.__params, **auth_params, **params}
-        return requests.get(self.__url, params, timeout=self.__TIMEOUT)
-    
-    #TODO add capability to store using query functions after fetching jobs
-    
+
+        response = requests.get(self.__url, params, timeout=self.__TIMEOUT)
+
+        self.insert_jobs(response.json()["results"])
+
+        return response
+
