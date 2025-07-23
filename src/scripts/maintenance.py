@@ -1,1 +1,1 @@
-""" Script maintains and deletes jobs in database """
+""" Script maintains db capacity """
