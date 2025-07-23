@@ -34,7 +34,7 @@ class Fetcher:
         results = []
 
         for job in jobs:
-            results[job.index()] = query.insert(self.get_name().lower(), job)
+            query.insert(self.get_name().lower(), job)
 
         return results
 
