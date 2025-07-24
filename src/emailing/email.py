@@ -21,9 +21,12 @@ def email_message(message):
         server.login(SENDER_EMAIL, PASSWORD)
         server.sendmail(SENDER_EMAIL, RECEIVER_EMAIL, message)
 
-def construct_message():
-    """ Construct message based on jobs from database """
-    #TODO determine which jobs to consider for message
-    #TODO construction of the message
+def construct_message(job):
+    """ Construct email message out of job """
+    #TODO
+    return ""
 
+def email_jobs(api_name=None, num_jobs=0, title=None, company=None, location=None):
+    """ Send email for jobs that fit filter params """
+    #TODO 
     return ""

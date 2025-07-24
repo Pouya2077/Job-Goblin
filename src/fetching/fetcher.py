@@ -64,4 +64,3 @@ class Fetcher:
         self.__insert_jobs(response.json()["results"])
 
         return response
-

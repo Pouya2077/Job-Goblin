@@ -1,1 +1,1 @@
-from emailing.email import email_message
+from emailing.email import *

@@ -9,21 +9,13 @@ RESULTS_PER_PAGE = 2
 
 Adzuna = Fetcher(BASE_URL, "ADZUNA", {"what": WHAT, "results_per_page": RESULTS_PER_PAGE})
 
-# response = Adzuna.get_jobs()
-# print(len(response.json()["results"]))
+response = Adzuna.get_jobs()
+print(len(response.json()["results"]))
 # query.delete_all_jobs()
 
 # response = Adzuna.jobs_by_params({"where": "Ottawa, Ontario"})
 # print(len(response.json()["results"]))
 
-print(Adzuna.get_name())
-print(Adzuna.get_url())
-print(Adzuna.get_params())
-
-job = {
-    "title": "Software Developer", 
-    "company": "Test Corporation", 
-    "description": "test company", 
-    "location": "test city",
-}
-print(Adzuna.insert_jobs([job]))
+# print(Adzuna.get_name())
+# print(Adzuna.get_url())
+# print(Adzuna.get_params())
