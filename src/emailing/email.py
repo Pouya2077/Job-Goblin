@@ -4,6 +4,7 @@ import os
 import smtplib
 import ssl
 from dotenv import load_dotenv
+from database import query
 
 load_dotenv()
 
@@ -23,10 +24,34 @@ def email_message(message):
 
 def construct_message(job):
     """ Construct email message out of job """
-    #TODO
-    return ""
+
+    message = f"""{job["title"]} at {job["company"]}
+                   Location: {job["location"]}
+                   {job["url"]}"""
+
+    return message
 
 def email_jobs(api_name=None, num_jobs=0, title=None, company=None, location=None):
     """ Send email for jobs that fit filter params """
-    #TODO 
-    return ""
+
+    jobs = query.fetch_jobs(api_name, num_jobs, title, company, location)
+
+    if jobs is not None:
+        message = """\
+        Subject: Test Email"""
+
+        for job in jobs:
+            job_message = construct_message(job)
+            message = f"""{message}\n
+            {job_message}"""
+
+        email_message(message)
+        return
+
+    message = """\
+                Subject: Error: no jobs found to send message
+                
+                Please review the database and scripts to understand why no
+                jobs were emailed to you."""
+
+    email_message(message)
