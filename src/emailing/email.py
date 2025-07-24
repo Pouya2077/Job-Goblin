@@ -5,6 +5,7 @@ import smtplib
 import ssl
 from dotenv import load_dotenv
 from database import query
+from constants import *
 
 load_dotenv()
 
@@ -37,8 +38,8 @@ def email_jobs(api_name=None, num_jobs=0, title=None, company=None, location=Non
     jobs = query.fetch_jobs(api_name, num_jobs, title, company, location)
 
     if jobs is not None:
-        message = """\
-        Subject: Test Email"""
+        message = f"""\
+        {EMAIL_SUBJECT}"""
 
         for job in jobs:
             job_message = construct_message(job)
