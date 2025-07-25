@@ -5,4 +5,4 @@ MAX_DELETE = 10
 MAX_EMAMIL = 10
 TABLE = "jobs"
 EMAIL_SUBJECT = "Subject: Job Goblin Newest Jobs"
-CAPACITY = 250
+CAPACITY = 250 #megabytes

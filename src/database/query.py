@@ -24,7 +24,7 @@ def get_database_size():
     """ Return size of database in bytes """
     result = supabase.rpc("get_database_size").execute()
     
-    return result.data / (1024 * 1024)
+    return result.data / (1024 * 1024) #convert to megabytes
 
 def get_num_jobs():
     """ Get number of jobs (rows) in table """
@@ -57,7 +57,7 @@ def fetch_jobs(api_name=None, num_jobs=0, title=None, company=None, location=Non
 
 def delete_jobs(api_name=None, num_jobs=0, title=None, company=None, location=None):
     """ Delete specific job from db """
-    if num_jobs > MAX_DELETE:
+    if num_jobs > MAX_DELETE and get_database_size() < CAPACITY:
         num_jobs = MAX_DELETE
 
     query = supabase.table(TABLE).select("id")
