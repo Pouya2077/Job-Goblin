@@ -1,25 +1,32 @@
 """ Script fetches, parses, and stores Adzuna jobs """
 
-from fetching import Fetcher, get_auth
-from emailing import email_message
-from database import supabase
+from fetching import Fetcher 
 
-DEFAULT_PARAMS = {"results_per_page": 1, 
-                  "what": "software developer",
-                  }
-ENDPOINT = "http://api.adzuna.com/v1/api/jobs/ca/search/1?"
+BASE_URL = "http://api.adzuna.com/v1/api/jobs/ca/search/1?"
+NAME = "ADZUNA"
 
-Adzuna = Fetcher(ENDPOINT, "ADZUNA", DEFAULT_PARAMS)
+default_params = {
+        "what": "Software Developer Intern", 
+        "results_per_page": 10, 
+        "where": "Vancouver, BC"
+        }
 
-response = Adzuna.get_jobs()
-result = response.json()["results"][0]
+Adzuna0 = Fetcher(BASE_URL, NAME, default_params)
+Adzuna1 = Fetcher(BASE_URL, NAME, {"what": "Software Engineer Intern",
+                                   "results_per_page": 10,
+                                   "where": "Vancouver, BC",
+                                   })
+Adzuna2 = Fetcher(BASE_URL, NAME, {"what": "Software Engineer Intern",
+                                   "results_per_page": 5,
+                                   "where": "Ontario",
+                                   })
+Adzuna3 = Fetcher(BASE_URL, NAME, {"what": "Software Developer Intern",
+                                   "results_per_page": 5,
+                                   "where": "Ontario",
+                                   })
 
-MESSAGE = f"""\
-Subject: {result["title"]} job at {result["company"]["display_name"]}
+Adzuna0.get_jobs()
+Adzuna1.get_jobs()
+Adzuna2.get_jobs()
+Adzuna3.get_jobs()
 
-description: {result["description"]}
-url:         {result["redirect_url"]}"""
-
-MESSAGE_BYTES = MESSAGE.encode("utf-8")
-
-email_message(MESSAGE_BYTES)

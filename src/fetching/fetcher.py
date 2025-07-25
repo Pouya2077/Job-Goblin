@@ -38,20 +38,8 @@ class Fetcher:
 
         return results
 
-    def get_jobs(self):
-        """ Return jobs in Canada """
-
-        auth_params = get_auth(self.__name)
-        params = {**self.__params, **auth_params}
-
-        response = requests.get(self.__url, params, timeout=self.__TIMEOUT)
-
-        self.__insert_jobs(response.json()["results"])
-
-        return response
-
-    def jobs_by_params(self, params=None):
-        """ Specify extra parameters """
+    def get_jobs(self, params=None):
+        """ Request jobs from API, extra params optional """
 
         if params is None:
             params = {}

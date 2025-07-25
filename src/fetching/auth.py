@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def get_auth(api_name):
-    """ Return .env variables for 'name' API """
+    """ Return sensitive variables """
     api_name = api_name.upper()
 
     if os.getenv(f"{api_name}_ID") is None:
