@@ -19,6 +19,19 @@ def insert(api_name, job):
             "location":     get_api_field(job, field_names["location"]),
             "source_api":   api_name,
             }).execute()
+    
+def get_database_size():
+    """ Return size of database in bytes """
+    result = supabase.rpc("get_database_size").execute()
+    
+    return result.data / (1024 * 1024)
+
+def get_num_jobs():
+    """ Get number of jobs (rows) in table """
+
+    result = supabase.table(TABLE).select("*", count="exact").execute()
+
+    return result.count
 
 def fetch_jobs(api_name=None, num_jobs=0, title=None, company=None, location=None):
     """ Fetch specific job from db """
