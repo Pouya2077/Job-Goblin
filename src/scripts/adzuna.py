@@ -29,4 +29,3 @@ Adzuna0.get_jobs()
 Adzuna1.get_jobs()
 Adzuna2.get_jobs()
 Adzuna3.get_jobs()
-

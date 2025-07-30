@@ -32,9 +32,8 @@ class Fetcher:
         """ Insert an array of jobs into db """
 
         results = []
-
         for job in jobs:
-            query.insert(self.get_name().lower(), job)
+            results.append(query.insert(self.get_name().lower(), job))
 
         return results
 
