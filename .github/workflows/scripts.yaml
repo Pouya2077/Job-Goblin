@@ -15,20 +15,20 @@ jobs:
 
     steps:
     - name: Checkout Repo 
-    uses: actions/checkout@v4  #allows GitHub Actions use repo code
+      uses: actions/checkout@v4  #allows GitHub Actions use repo code
 
     - name: Setup Python 
-    uses: actions/setup-python@v5
-    with: 
-      python-version: '3.12'
-      cache: 'pip'
+      uses: actions/setup-python@v5
+      with: 
+        python-version: '3.12'
+        cache: 'pip'
 
     - name: Install Packages 
-    run: pip install -e . 
+      run: pip install -e . 
 
     - name: Run Test Script
-    if: github.event.schedule == '*/5 * * * *'
-    run: python3 ./src/scripts/test_script.py
+      if: github.event.schedule == '*/5 * * * *'
+      run: python3 ./src/scripts/test_script.py
 
     
 
