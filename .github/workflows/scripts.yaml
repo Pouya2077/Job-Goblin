@@ -2,17 +2,24 @@ name: Run Job Goblin Scripts
 
 on: 
   schedule: 
-  - cron: '30 7 * * *'     #for db 
-  - cron: '0 */12 * * *'  #for jobs
-  - cron: '0 8 * * *'     #for emails
-  - cron: '*/5 * * * *'   #for test script
+    - cron: '30 7 * * *'     #for db 
+    - cron: '0 */12 * * *'  #for jobs
+    - cron: '0 8 * * *'     #for emails
   workflow_dispatch:
 
 jobs:
   build:
     name: Operations
     runs-on: ubuntu-latest
-    #come back for env 
+    env: 
+      ADZUNA_ID: ${{ secrets.ADZUNA_ID }}
+      ADZUNA_KEY: ${{ secrets.ADZUNA_KEY }}
+      TO_EMAIL: ${{ secrets.TO_EMAIL }}
+      FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+      FROM_PASSWORD: ${{ secrets.FROM_PASSWORD }}
+      APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
 
     steps:
     - name: Checkout Repo 
@@ -31,7 +38,6 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run Test Script
-      # if: github.event.schedule == '*/5 * * * *'
       run: python3 ./src/scripts/test_script.py
 
     
