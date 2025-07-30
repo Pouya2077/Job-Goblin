@@ -1,7 +1,7 @@
 """ Constants for all scripts """
 
-MAX_FETCH = 10
-MAX_DELETE = 10
+MAX_FETCH = 25
+MAX_DELETE = 50
 MAX_EMAMIL = 10
 TABLE = "jobs"
 EMAIL_SUBJECT = "Subject: Job Goblin Newest Jobs"

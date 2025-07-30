@@ -31,7 +31,7 @@ Adzuna1.get_jobs()
 Adzuna2.get_jobs()
 Adzuna3.get_jobs()
 
-MESSAGE = """\
+MESSAGE = f"""\
 Subject: Successfully queried and inserted jobs into database. 
 
 Jobs inserted: """
