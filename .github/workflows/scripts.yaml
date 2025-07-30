@@ -27,8 +27,11 @@ jobs:
     - name: Install Packages 
       run: pip install -e . 
 
+    - name: Install Dependencies
+      run: pip install -r requirements.txt
+
     - name: Run Test Script
-      if: github.event.schedule == '*/5 * * * *'
+      # if: github.event.schedule == '*/5 * * * *'
       run: python3 ./src/scripts/test_script.py
 
     
