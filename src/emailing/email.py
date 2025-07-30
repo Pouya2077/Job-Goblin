@@ -50,7 +50,7 @@ def email_jobs(api_name=None, num_jobs=0, title=None, company=None, location=Non
         return
 
     message = """\
-    Subject: Error: no jobs found to send message
+    Subject: Error - no jobs found to send message
     
     Please review the database and scripts to understand why no
     jobs were emailed to you."""

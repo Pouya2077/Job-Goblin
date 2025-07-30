@@ -1,6 +1,7 @@
 """ Script fetches, parses, and stores Adzuna jobs """
 
-from fetching import Fetcher 
+from fetching import Fetcher
+from emailing import email
 
 BASE_URL = "http://api.adzuna.com/v1/api/jobs/ca/search/1?"
 NAME = "ADZUNA"
@@ -29,3 +30,10 @@ Adzuna0.get_jobs()
 Adzuna1.get_jobs()
 Adzuna2.get_jobs()
 Adzuna3.get_jobs()
+
+MESSAGE = """\
+Subject: Successfully queried and inserted jobs into database. 
+
+Jobs inserted: """
+email.email_message(MESSAGE)
+
