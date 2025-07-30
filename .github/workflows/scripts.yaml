@@ -6,6 +6,7 @@ on:
   - cron: '0 */12 * * *'  #for jobs
   - cron: '0 8 * * *'     #for emails
   - cron: '*/5 * * * *'   #for test script
+  workflow_dispatch:
 
 jobs:
   build:
