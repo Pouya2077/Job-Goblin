@@ -47,7 +47,8 @@ class Fetcher:
         params = {**self.__params, **auth_params, **params}
 
         response = requests.get(self.__url, params, timeout=self.__TIMEOUT)
+        response = response.json()["results"]
 
-        self.__insert_jobs(response.json()["results"])
+        self.__insert_jobs(response)
 
         return response

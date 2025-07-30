@@ -2,7 +2,9 @@
 
 from fetching import Fetcher
 from emailing import email
+from database import query
 
+count = query.get_num_jobs()
 BASE_URL = "http://api.adzuna.com/v1/api/jobs/ca/search/1?"
 NAME = "ADZUNA"
 
@@ -31,9 +33,11 @@ Adzuna1.get_jobs()
 Adzuna2.get_jobs()
 Adzuna3.get_jobs()
 
+count = abs(count - query.get_num_jobs())
+
 MESSAGE = f"""\
 Subject: Successfully queried and inserted jobs into database. 
 
-Jobs inserted: """
+Jobs inserted: {count}"""
 email.email_message(MESSAGE)
 
