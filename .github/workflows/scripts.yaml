@@ -1,0 +1,35 @@
+name: Run Job Goblin Scripts
+
+on: 
+  schedule: 
+  - cron: '0 7 * * *'     #for db 
+  - cron: '0 */12 * * *'  #for jobs
+  - cron: '0 8 * * *'     #for emails
+  - cron: '*/5 * * * *'   #for test script
+
+jobs:
+  name: Operations
+  runs-on: ubuntu-latest
+  #come back for env 
+
+  steps:
+  - name: Checkout Repo 
+  uses: actions/checkout@v4  #lets GitHub Actions use repo code
+
+  - name: Setup Python 
+  uses: actions/setup-python@v5
+  with: 
+    python-version: '3.12'
+    cache: 'pip'
+
+  - name: Install Packages 
+  run: pip install -e . 
+
+  - name: Run Test Script
+  run: python3 ./src/scripts/test_script.py
+
+    
+
+
+
+
