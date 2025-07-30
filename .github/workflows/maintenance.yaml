@@ -1,0 +1,8 @@
+name: Database Capacity Maintenance
+
+on: 
+  schedule: 
+    - cron: '*/5 * * * *'
+
+
+
