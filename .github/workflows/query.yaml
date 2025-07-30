@@ -1,15 +1,13 @@
-name: Run Job Goblin Scripts
+name: Request from APIs
 
 on: 
   schedule: 
-    - cron: '30 7 * * *'     #for db 
-    - cron: '0 */12 * * *'  #for jobs
-    - cron: '0 8 * * *'     #for emails
+    - cron: '0 */12 * * *'     
   workflow_dispatch:
 
 jobs:
   build:
-    name: Operations
+    name: Run Request Jobs Scripts
     runs-on: ubuntu-latest
     env: 
       ADZUNA_ID: ${{ secrets.ADZUNA_ID }}
@@ -37,8 +35,8 @@ jobs:
     - name: Install Dependencies
       run: pip install -r requirements.txt
 
-    - name: Run Test Script
-      run: python3 ./src/scripts/test_script.py
+    - name: Run Script
+      run: python3 ./src/scripts/adzuna.py
 
     
 

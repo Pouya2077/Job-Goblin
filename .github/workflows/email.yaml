@@ -1,0 +1,42 @@
+name: Email Jobs
+
+on: 
+  schedule: 
+    - cron: '0 8 * * *'     
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Run Email User Jobs Script
+    runs-on: ubuntu-latest
+    env: 
+      ADZUNA_ID: ${{ secrets.ADZUNA_ID }}
+      ADZUNA_KEY: ${{ secrets.ADZUNA_KEY }}
+      TO_EMAIL: ${{ secrets.TO_EMAIL }}
+      FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+      FROM_PASSWORD: ${{ secrets.FROM_PASSWORD }}
+      APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+
+    steps:
+    - name: Checkout Repo 
+      uses: actions/checkout@v4  #allows GitHub Actions use repo code
+
+    - name: Setup Python 
+      uses: actions/setup-python@v5
+      with: 
+        python-version: '3.12'
+        cache: 'pip'
+
+    - name: Install Packages 
+      run: pip install -e . 
+
+    - name: Install Dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run Script
+      run: python3 ./src/scripts/send_emails.py
+
+
+
