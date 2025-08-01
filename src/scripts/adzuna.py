@@ -3,6 +3,7 @@
 from fetching import Fetcher
 from emailing import email
 from database import query
+from event_logging import LOG
 
 count = query.get_num_jobs()
 BASE_URL = "http://api.adzuna.com/v1/api/jobs/ca/search/1?"
@@ -40,4 +41,4 @@ Subject: Successfully queried and inserted jobs into database.
 
 Jobs inserted: {count}"""
 email.email_message(MESSAGE)    #msg with total jobs inserted
-
+LOG.info(f"Inserted {count} jobs.")

@@ -1,3 +1,5 @@
+""" Experimenting with event logger """
+
 from event_logging import LOG
 
 LOG.debug("Test debug msg.")
