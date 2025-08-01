@@ -1,5 +1,4 @@
 """ Constants for all scripts """
-
 MAX_FETCH = 25
 MAX_DELETE = 50
 MAX_EMAMIL = 10

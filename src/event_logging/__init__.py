@@ -1,0 +1,1 @@
+from event_logging.log import LOG
