@@ -1,0 +1,9 @@
+name: Run Tests
+
+on:
+  [push, merge, fork]
+  workflow_dispatch:
+
+jobs:
+  test1:
+    #each test will be its own job

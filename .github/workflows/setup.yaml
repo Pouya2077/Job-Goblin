@@ -1,0 +1,21 @@
+name: "Setup Env and Dependencies"
+description: "Install packages, setup Python version, and checkout repo code."
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Checkout Repo Code
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'pip'
+    
+    - name: Install Packages
+      run: pip install -e .
+    
+    - name: Install Dependencies
+      run: pip install -r requirements.txt

@@ -20,20 +20,8 @@ jobs:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
 
     steps:
-    - name: Checkout Repo 
-      uses: actions/checkout@v4  #allows GitHub Actions use repo code
-
-    - name: Setup Python 
-      uses: actions/setup-python@v5
-      with: 
-        python-version: '3.12'
-        cache: 'pip'
-
-    - name: Install Packages 
-      run: pip install -e . 
-
-    - name: Install Dependencies
-      run: pip install -r requirements.txt
+    - name: Setup Environment 
+      uses: ./.github/workflows/setup.yaml
 
     - name: Run Script
       run: python3 ./src/scripts/maintenance.py
