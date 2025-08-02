@@ -8,4 +8,9 @@ on:
 
 jobs:
   test1:
-    #each test will be its own job
+    name: Run Database Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Python
+        uses: ./.github/actions/setup_env
