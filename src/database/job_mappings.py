@@ -11,10 +11,10 @@ API_FIELD_NAMES = {
     },
     "test": {
         "title":        "test_title", 
-        "company":      "test_company", 
+        "company":      "test_company.test_company_name", 
         "url":          "test_url", 
         "description":  "test_desc", 
-        "location":     "test_location",
+        "location":     "test_location.test_area_name",
     },
 }
 
