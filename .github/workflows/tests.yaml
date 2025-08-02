@@ -1,7 +1,9 @@
 name: Run Tests
 
 on:
-  [push, merge, fork]
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
