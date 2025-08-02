@@ -11,7 +11,7 @@ httpcore==1.0.9
 httpx==0.28.1
 hyperframe==6.1.0
 idna==3.10
--e git+https://github.com/Pouya2077/job-gob.git@ce0bcea904525cd93644d6433c4d86eb3173d577#egg=Job_Goblin
+-e git+https://github.com/Pouya2077/job-gob.git@ca3bafa76fa0c2a79736cce7b060a4bd9e33ee90#egg=Job_Goblin
 packaging==25.0
 pip_system_certs==5.2
 postgrest==1.1.1
