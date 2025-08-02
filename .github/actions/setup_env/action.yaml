@@ -13,6 +13,8 @@ runs:
     
     - name: Install Packages
       run: pip install -e .
+      shell: bash
     
     - name: Install Dependencies
       run: pip install -r requirements.txt
+      shell: bash

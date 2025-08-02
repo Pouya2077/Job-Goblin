@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo       #gets repo code
+      - name: Checkout Repo         #gets repo code
         uses: actions/checkout@v4
 
       - name: Setup Python
