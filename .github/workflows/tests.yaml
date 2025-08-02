@@ -12,5 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Repo       #gets repo code
+        uses: actions/checkout@v4
+
       - name: Setup Python
         uses: ./.github/actions/setup_env
