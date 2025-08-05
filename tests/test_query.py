@@ -3,22 +3,58 @@ from database import query
 from database import get_api_field, API_PATHS
 
 TEST_JOB_0 = {
-    "test_title":           "Test Title 0", 
-    "test_company":         {"test_display_name":   "Test Company 0"}, 
+    "test_title":           "Test Sr. Dev", 
+    "test_company":         {"test_display_name":   "Test Enterprises"}, 
     "test_url":             "Test URL 0", 
-    "test_description":     "Test Description 0",
-    "test_location":        {"test_area":       "Test Location/Area 0"}, 
+    "test_description":     "Guide interns at our test company.",
+    "test_location":        {"test_area":       "Vancouver, BC"}, 
     "test_source_api":      "test_job_0",
 }
-
 TEST_JOB_1 = {
-    "test_title":           "Test Title 1", 
-    "test_company":         "Test Company 1", 
+    "test_title":           "Test Jr. Dev", 
+    "test_company":         "Test Enterprises", 
     "test_url":             "Test URL 1", 
-    "test_description":     "Test Description 1",
-    "test_location":        "Test Location/Area 1", 
+    "test_description":     "Intern at our test company.",
+    "test_location":        "Vancouver, BC", 
     "test_source_api":      "test_job_1",
 }
+TEST_JOB_2 = {
+    "test_title":           "Test Manager", 
+    "test_company":         "Test Enterprises", 
+    "test_url":             "Test URL 2", 
+    "test_description":     "Manage Jr. and Sr. devs.",
+    "test_location":        "Toronto, ON", 
+    "test_source_api":      "test_job_2",
+}
+TEST_JOB_3 = {
+    "test_title":           "Test Jr. Dev", 
+    "test_company":         "Test Incorporation", 
+    "test_url":             "Test URL 3", 
+    "test_description":     "Full time Jr. dev position",
+    "test_location":        {"test_area":       "Vancouver, BC"}, 
+    "test_source_api":      "test_job_3",
+}
+
+def helper_delete_jobs(api_names):
+    """ Helper to delete jobs after testing """
+    for api_name in api_names:
+        query.delete_all_jobs(api_name)
+
+def compare_fields(job, test_job, paths):
+    """ Helper to assert fields """
+    for key in paths:
+        assert job[key] == get_api_field(test_job, paths[key])
+
+def get_test_job_type(job):
+    """ Return which test job corresponds to the fetched job """
+    if job["source_api"] == "test_job_0":
+        return TEST_JOB_0
+    elif job["source_api"] == "test_job_1":
+        return TEST_JOB_1
+    elif job["source_api"] == "test_job_2":
+        return TEST_JOB_2
+    else:
+        return TEST_JOB_3
 
 def test_insert_job():
     response = query.insert("test_job_0", TEST_JOB_0)
@@ -26,13 +62,11 @@ def test_insert_job():
 
     assert response.data is not None
     assert len(response.data) == 1
+    compare_fields(inserted_job, TEST_JOB_0, API_PATHS["test_job_0"])
 
-    paths = API_PATHS["test_job_0"]
-    for key in paths:
-        assert inserted_job[key] == get_api_field(TEST_JOB_0, paths[key])
+    helper_delete_jobs(["test_job_0"])
 
 def test_fetch_jobs_by_api_name():
-    query.delete_all_jobs("test_job_0")
     for _ in range(5):
         query.insert("test_job_0", TEST_JOB_0)
 
@@ -40,30 +74,35 @@ def test_fetch_jobs_by_api_name():
     assert response is not None
     assert len(response) == 5
 
-    paths = API_PATHS["test_job_0"]
-    for i in range(5):
-        job = response[i]
-        for key in paths:
-            assert job[key] == get_api_field(TEST_JOB_0, paths[key])
+    for job in response:
+        compare_fields(job, TEST_JOB_0, API_PATHS["test_job_0"])
 
-    query.delete_all_jobs("test_job_0")
+    helper_delete_jobs(["test_job_0"])
 
-def test_fetch_jobs_by_search_combination():
-    query.delete_all_jobs("test_job_0")
-    query.delete_all_jobs("test_job_1")
-
+def test_fetch_jobs_by_one_search_params():  #api_name not unique search param
     job_types = [TEST_JOB_0, TEST_JOB_1]
     for _ in range(8):
         job = random.choice(job_types)
         query.insert(job["test_source_api"], job)
 
-    
+    response = query.fetch_jobs(None, 5, None, "Test Enterprises")
+    assert response is not None
 
-    query.delete_all_jobs("test_job_0")
-    query.delete_all_jobs("test_job_1")
+    for job in response:
+        compare_fields(job, get_test_job_type(job), API_PATHS[job["source_api"]])
+
+    helper_delete_jobs(["test_job_0", "test_job_1"])
+
+def test_fetch_jobs_by_two_search_params():
+    job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
+    for _ in range(20):
+        job = random.choice(job_types)
+        query.insert(job["test_source_api"], job)
+
+    helper_delete_jobs(["test_job_0", "test_job_1", "test_job_2", "test_job_3"])
 
 def test_delete_jobs():
     return #TODO
 
-def test_deleete_all_jobs():
+def test_delete_all_jobs():
     return #TODO
