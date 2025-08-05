@@ -12,7 +12,7 @@ httpx==0.28.1
 hyperframe==6.1.0
 idna==3.10
 iniconfig==2.1.0
--e git+https://github.com/Pouya2077/job-gob.git@03a17b5343e035e8ba963ca51ba90dc6fa0c2239#egg=Job_Goblin
+-e git+https://github.com/Pouya2077/job-gob.git@8182ae937b515bce1930964b3887b74dcb1106ca#egg=Job_Goblin
 packaging==25.0
 pip_system_certs==5.2
 pluggy==1.6.0
