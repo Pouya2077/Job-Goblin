@@ -88,7 +88,7 @@ def delete_jobs(api_name=None, num_jobs=0, title=None, company=None, location=No
     return result.data
 
 def delete_all_jobs(api_name=None):
-    """ For MANUAL maintenance ONLY """
+    """ NOT for script usage """
 
     query = supabase.table(TABLE).select("id")
 
