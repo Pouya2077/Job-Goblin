@@ -1,6 +1,6 @@
 """ Definition of all APIs JSON fields and fnc to iterate through them """
 
-API_FIELD_NAMES = {
+API_PATHS = {
     #Dict to give JSON fields name for diff API responses
     "adzuna": {
         "title":        "title", 
@@ -8,13 +8,6 @@ API_FIELD_NAMES = {
         "url":          "redirect_url", 
         "description":  "description", 
         "location":     "location.display_name",
-    },
-    "test": {
-        "title":        "test_title", 
-        "company":      "test_company.test_company_name", 
-        "url":          "test_url", 
-        "description":  "test_desc", 
-        "location":     "test_location.test_area_name",
     },
 }
 

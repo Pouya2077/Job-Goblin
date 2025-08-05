@@ -1,22 +1,22 @@
 """ INSERT, GET, and DELETE for supabase backend """
 
 from database.client import supabase
-from database.job_mappings import API_FIELD_NAMES, get_api_field
+from database.job_mappings import API_PATHS, get_api_field
 from constants import *
 
 def insert(api_name, job):
     """ Insert job into supabase db """
     api_name = api_name.lower()
-    field_names = API_FIELD_NAMES[api_name]
+    path = API_PATHS[api_name]
 
     return supabase.table(TABLE).insert(
                             #entires are case sensitive (includes fetching and deleting filters)
             {
-            "title":        get_api_field(job, field_names["title"]), 
-            "company":      get_api_field(job, field_names["company"]),
-            "url":          get_api_field(job, field_names["url"]),
-            "description":  get_api_field(job, field_names["description"]), 
-            "location":     get_api_field(job, field_names["location"]),
+            "title":        get_api_field(job, path["title"]), 
+            "company":      get_api_field(job, path["company"]),
+            "url":          get_api_field(job, path["url"]),
+            "description":  get_api_field(job, path["description"]), 
+            "location":     get_api_field(job, path["location"]),
             "source_api":   api_name,
             }).execute()
     

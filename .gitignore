@@ -4,7 +4,8 @@
 # SENSITIVE DATA 
 .env
 
-# IMPORT INFORMATOIN
+# CACHING
 __pycache__
 *.egg-info
+.pytest_cache
 

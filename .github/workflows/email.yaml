@@ -28,6 +28,3 @@ jobs:
 
     - name: Run Script
       run: python3 ./src/scripts/send_emails.py
-
-
-
