@@ -9,6 +9,13 @@ API_PATHS = {
         "description":  "description", 
         "location":     "location.display_name",
     },
+    "test_job": {
+        "title":        "test_title", 
+        "company":      "test_company.test_display_name", 
+        "url":          "test_url", 
+        "description":  "test_description", 
+        "location":     "test_location.test_area",
+    }
 }
 
 def get_api_field(job, path):

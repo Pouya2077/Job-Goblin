@@ -19,11 +19,11 @@ def insert(api_name, job):
             "location":     get_api_field(job, path["location"]),
             "source_api":   api_name,
             }).execute()
-    
+
 def get_database_size():
     """ Return size of database in bytes """
     result = supabase.rpc("get_database_size").execute()
-    
+
     return result.data / (1024 * 1024) #convert to megabytes
 
 def get_num_jobs():
@@ -88,7 +88,7 @@ def delete_jobs(api_name=None, num_jobs=0, title=None, company=None, location=No
     return result.data
 
 def delete_all_jobs(api_name=None):
-    """ Not used by scripts, for manual maintenance """
+    """ For MANUAL maintenance ONLY """
 
     query = supabase.table(TABLE).select("id")
 
