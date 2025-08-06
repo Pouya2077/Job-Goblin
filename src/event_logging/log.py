@@ -3,7 +3,7 @@ import logging
 
 LOG = logging.getLogger("job_goblin")
 LOG.setLevel(logging.DEBUG)
-LOG.propogate = False       #avoid root logger
+LOG.propagate = False       #avoid root logger
 
 file_handler = logging.FileHandler(filename="app.log", encoding="utf-8", mode="a")
 file_handler.setLevel(logging.DEBUG)

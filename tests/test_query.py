@@ -135,4 +135,3 @@ def test_delete_all_jobs():
         response = query.delete_all_jobs(test_job["test_source_api"])
         assert response is not None
         assert len(response) == 5
-
