@@ -1,6 +1,11 @@
 # Job Goblin - WORK IN PROGRESS
 ## Find jobs without doing any of the work to!
 
+**Setup**
+1. Clone the repository to your local device.
+2. To install dependencies: pip install -r requirements.txt
+3. To install the packages of the project: pip install -e .
+
 **User Stories**
 1. "I want the program to routinely query jobs on a schedule I give it."
 2. "I want the program to query jobs using search parameters I give it (name, company, etc.)."
