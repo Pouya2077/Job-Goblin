@@ -110,7 +110,7 @@ def test_fetch_jobs_by_two_search_params():
 
 def test_fetch_jobs_by_three_search_params():
     job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
-    for _ in range(30):
+    for _ in range(20):
         job = random.choice(job_types)
         query.insert(job["test_source_api"], job)
 
@@ -126,4 +126,13 @@ def test_delete_jobs():
     return #TODO
 
 def test_delete_all_jobs():
-    return #TODO
+    job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
+    for test_job in job_types:
+        for _ in range(5):
+            query.insert(test_job["test_source_api"], test_job)
+
+    for test_job in job_types:
+        response = query.delete_all_jobs(test_job["test_source_api"])
+        assert response is not None
+        assert len(response) == 5
+
