@@ -68,6 +68,7 @@ def test_fetcher_no_extra_params():
     response = TEST.get_jobs()
     assert response is not None
     assert len(response) <= constants.MAX_FETCH
+    query.delete_all_jobs()
 
 def test_fetcher_use_extra_params():
     """ Test case where Fetcher uses extra params """
@@ -79,7 +80,7 @@ def test_fetcher_use_extra_params():
     response = TEST.get_jobs(extra_params)
     assert response is not None
     assert len(response) <= constants.MAX_FETCH
+    query.delete_all_jobs()
 
 #TODO add test cases to YAML
-#TODO see if you can run a function at the end to clear db instead
 
