@@ -46,9 +46,17 @@ class Fetcher:
         auth_params = get_auth(self.__name)
         params = {**self.__params, **auth_params, **params}
 
-        response = requests.get(self.__url, params, timeout=self.__TIMEOUT)
-        response = response.json()["results"]
+        response = None
+        try:
+            response = requests.get(self.__url, params, timeout=self.__TIMEOUT)
+            response = response.json()["results"]
 
-        self.__insert_jobs(response)
+            self.__insert_jobs(response)
+        except requests.exceptions.Timeout as ex:
+            print(f"Timeout exception: {ex}")
+        except requests.exceptions.HTTPError as ex: #TODO add event logging here later
+            print(f"HTTP Exception: {ex}.")
+        except requests.exceptions.RequestException as ex:
+            print(f"Request Exception: {ex}.")
 
         return response

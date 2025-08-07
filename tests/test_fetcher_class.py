@@ -8,15 +8,6 @@ PARAMS = {
         "results_per_page": 10, 
         "where": "Vancouver, BC",
         }
-
-TEST_JOB_0 = {
-    "test_title":           "Test Sr. Dev", 
-    "test_company":         {"test_display_name":   "Test Enterprises"}, 
-    "test_url":             "Test URL 0", 
-    "test_description":     "Guide interns at our test company.",
-    "test_location":        {"test_area":       "Vancouver, BC"}, 
-    "test_source_api":      "test_job_0",
-}
 TEST = Fetcher(URL, NAME, PARAMS)
 
 def test_fetcher_getters():
@@ -25,8 +16,16 @@ def test_fetcher_getters():
     assert TEST.get_name() == NAME
     assert TEST.get_params() == PARAMS
 
-def test_fetcher_get_no_jobs():
-    """ Test case where Fetcher fetches None """
+def test_fetcher_exception_expected():
+    """ Test case where Fetcher throws exception """
+    none_params = {
+        "none_param":   "none",
+    }
+
+    response = TEST.get_jobs(none_params)
+    assert response is None
+
+def test_fetcher_returns_none():
     return #TODO
 
 def test_fetcher_no_extra_params():
@@ -45,4 +44,3 @@ def test_fetcher_use_extra_params():
     response = TEST.get_jobs(extra_params)
     assert response is not None
     assert len(response) <= MAX_FETCH
-
