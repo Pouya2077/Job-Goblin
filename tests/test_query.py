@@ -1,6 +1,9 @@
 import random
 from database import query
 from database import get_api_field, API_PATHS
+import constants
+
+constants.TABLE = "test_jobs"
 
 TEST_JOB_0 = {
     "test_title":           "Test Sr. Dev", 
@@ -251,3 +254,5 @@ def test_delete_all_jobs():
         assert len(response) == 14
 
     helper_delete_jobs()
+
+constants.TABLE = "jobs"

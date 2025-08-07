@@ -2,10 +2,11 @@ import pytest
 import requests
 from unittest.mock import patch
 from fetching import Fetcher
-from constants import *
+import constants
 
+constants.TABLE = "test_jobs"
 URL = "http://api.adzuna.com/v1/api/jobs/ca/search/1?"
-NAME = "ADZUNA"  #testing only Adzuna should still covers general functionality for all APIs
+NAME = "ADZUNA"  #testing only Adzuna should still covers general cases for all APIs
 PARAMS = {
         "what": "Software Developer Intern", 
         "results_per_page": 10, 
@@ -65,7 +66,7 @@ def test_fetcher_no_extra_params():
     """ Test response has value and no exceptions """
     response = TEST.get_jobs()
     assert response is not None
-    assert len(response) <= MAX_FETCH
+    assert len(response) <= constants.MAX_FETCH
 
 def test_fetcher_use_extra_params():
     """ Test case where Fetcher uses extra params """
@@ -76,6 +77,6 @@ def test_fetcher_use_extra_params():
 
     response = TEST.get_jobs(extra_params)
     assert response is not None
-    assert len(response) <= MAX_FETCH
+    assert len(response) <= constants.MAX_FETCH
 
-#TODO refactor so that these tests don't clog database
+constants.TABLE = "jobs"

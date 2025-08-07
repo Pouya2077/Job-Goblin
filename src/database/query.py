@@ -2,14 +2,14 @@
 
 from database.client import supabase
 from database.job_mappings import API_PATHS, get_api_field
-from constants import *
+import constants
 
 def insert(api_name, job):
     """ Insert job into supabase db """
     api_name = api_name.lower()
     path = API_PATHS[api_name]
 
-    return supabase.table(TABLE).insert(
+    return supabase.table(constants.TABLE).insert(
                             #entires are case sensitive (includes fetching and deleting filters)
             {
             "title":        get_api_field(job, path["title"]), 
@@ -29,16 +29,16 @@ def get_database_size():
 def get_num_jobs():
     """ Get number of jobs (rows) in table """
 
-    result = supabase.table(TABLE).select("*", count="exact").execute()
+    result = supabase.table(constants.TABLE).select("*", count="exact").execute()
 
     return result.count
 
 def fetch_jobs(api_name=None, num_jobs=0, title=None, company=None, location=None):
     """ Fetch specific job from db """
-    if num_jobs > MAX_FETCH:
-        num_jobs = MAX_FETCH
+    if num_jobs > constants.MAX_FETCH:
+        num_jobs = constants.MAX_FETCH
 
-    query = supabase.table(TABLE).select("*")
+    query = supabase.table(constants.TABLE).select("*")
 
     if api_name is not None:
         query = query.eq("source_api", f"{api_name.lower()}")
@@ -57,10 +57,10 @@ def fetch_jobs(api_name=None, num_jobs=0, title=None, company=None, location=Non
 
 def delete_jobs(api_name=None, num_jobs=0, title=None, company=None, location=None):
     """ Delete specific job from db """
-    if num_jobs > MAX_DELETE and get_database_size() < CAPACITY:
-        num_jobs = MAX_DELETE
+    if num_jobs > constants.MAX_DELETE and get_database_size() < constants.CAPACITY:
+        num_jobs = constants.MAX_DELETE
 
-    query = supabase.table(TABLE).select("id")
+    query = supabase.table(constants.TABLE).select("id")
 
     if api_name is not None:
         query = query.eq("source_api", f"{api_name.lower()}")
@@ -80,7 +80,7 @@ def delete_jobs(api_name=None, num_jobs=0, title=None, company=None, location=No
         return []
 
     job_ids = [job["id"] for job in jobs]
-    result = supabase.table(TABLE)\
+    result = supabase.table(constants.TABLE)\
                 .delete()\
                 .in_("id", job_ids)\
                 .execute()
@@ -90,7 +90,7 @@ def delete_jobs(api_name=None, num_jobs=0, title=None, company=None, location=No
 def delete_all_jobs(api_name=None):
     """ NOT for scripts """
 
-    query = supabase.table(TABLE).select("id")
+    query = supabase.table(constants.TABLE).select("id")
 
     if api_name is not None:
         query = query.eq("source_api", f"{api_name.lower()}")
@@ -100,7 +100,7 @@ def delete_all_jobs(api_name=None):
 
     job_ids = [job["id"] for job in jobs]
 
-    result = supabase.table(TABLE)\
+    result = supabase.table(constants.TABLE)\
             .delete()\
             .in_("id", job_ids)\
             .execute()

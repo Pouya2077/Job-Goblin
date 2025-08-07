@@ -5,7 +5,7 @@ import smtplib
 import ssl
 from dotenv import load_dotenv
 from database import query
-from constants import *
+import constants
 
 load_dotenv()
 
@@ -39,7 +39,7 @@ def email_jobs(api_name=None, num_jobs=0, title=None, company=None, location=Non
 
     if jobs is not None:
         message = f"""\
-        {EMAIL_SUBJECT}"""
+        {constants.EMAIL_SUBJECT}"""
 
         for job in jobs:
             job_message = construct_message(job)

@@ -46,8 +46,8 @@ class Fetcher:
 
         auth_params = get_auth(self.__name)
         params = {**self.__params, **auth_params, **params}
-
         response = None
+
         try:
             response = requests.get(self.__url, params, timeout=self.__TIMEOUT)
             response = response.json()["results"]
