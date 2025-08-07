@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  test1:
-    name: Run Event Logging Tests
+  tests:
+    name: Run Tests on Codebase
     runs-on: ubuntu-latest
 
     steps:
@@ -18,47 +18,15 @@ jobs:
       - name: Setup Python
         uses: ./.github/actions/setup_env
       
-      - name: Run Test
+      - name: Run Event Logging Tests
         run: pytest ./tests/test_event_logging.py
-  
-  test2:
-    name: Run Fetcher Class Tests
-    runs-on: ubuntu_latest
-
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
       
-      - name: Setup Python
-        uses: ./.github/actions/setup_env
-      
-      - name: Run Test
+      - name: Run Fetcher Class Tests
         run: pytest ./tests/test_fetcher_class.py
-  
-  test3:
-    name: Run Job Mappings Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
       
-      - name: Setup Python
-        uses: ./.github/actions/setup_env
-
-      - name: Run Test
+      - name: Run Job Mappings Tests
         run: pytest ./tests/test_job_mappings.py
-
-  test4:
-    name: Run Database Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
       
-      - name: Setup Python
-        uses: ./.github/actions/setup_env
-
-      - name: Run Test
-        run: pytest ./tests/test_query.py 
+      - name: Run Database (Query) Tests
+        run: pytest ./tests/test_query.py
+ 

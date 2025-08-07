@@ -82,5 +82,4 @@ def test_fetcher_use_extra_params():
     assert len(response) <= constants.MAX_FETCH
     query.delete_all_jobs()
 
-#TODO add test cases to YAML
 
