@@ -36,18 +36,18 @@ TEST_JOB_3 = {
 }
 
 def helper_delete_jobs():
-    """ Helper to delete jobs after testing """
+    """ Helper: delete jobs (for use after testing is finished) """
     api_names = ["test_job_0", "test_job_1", "test_job_2", "test_job_3"]
     for api_name in api_names:
         query.delete_all_jobs(api_name)
 
 def compare_fields(job, test_job, paths):
-    """ Helper to assert fields """
+    """ Helper: assert that fields of two jobs are the same """
     for key in paths:
         assert job[key] == get_api_field(test_job, paths[key])
 
 def get_test_job_type(job):
-    """ Return which test job corresponds to the fetched job """
+    """ Hellper: return which test_job type corresponds to the fetched job """
     if job["source_api"] == "test_job_0":
         return TEST_JOB_0
     if job["source_api"] == "test_job_1":
@@ -57,7 +57,8 @@ def get_test_job_type(job):
 
     return TEST_JOB_3
 
-def test_insert_job():
+def test_insert_one_job():
+    """ Test that inserted job is intact """
     response = query.insert("test_job_0", TEST_JOB_0)
     inserted_job = response.data[0]
 
@@ -68,8 +69,11 @@ def test_insert_job():
     helper_delete_jobs()
 
 def test_fetch_jobs_by_api_name():
+    """ Ensure that fetching a job by api_name only fetches one job group """
     for _ in range(5):
         query.insert("test_job_0", TEST_JOB_0)
+    for _ in range(5):
+        query.insert("test_job_1", TEST_JOB_1)
 
     response = query.fetch_jobs("test_job_0", 5)
     assert response is not None
@@ -80,13 +84,17 @@ def test_fetch_jobs_by_api_name():
 
     helper_delete_jobs()
 
-def test_fetch_jobs_by_one_search_params():  #api_name not unique search param
+def test_fetch_jobs_by_company_name():
+    """ Test that company name fetches one job group """
     job_types = [TEST_JOB_0, TEST_JOB_1]
-    for _ in range(8):
+    query.insert("test_job_0", TEST_JOB_0)
+    query.insert("test_job_1", TEST_JOB_1)
+    query.insert("test_job_2", TEST_JOB_2)
+    for _ in range(5):
         job = random.choice(job_types)
         query.insert(job["test_source_api"], job)
 
-    response = query.fetch_jobs(None, 5, None, "Test Enterprises")
+    response = query.fetch_jobs(None, 8, None, "Test Enterprises")
     assert response is not None
 
     for job in response:
@@ -94,9 +102,11 @@ def test_fetch_jobs_by_one_search_params():  #api_name not unique search param
 
     helper_delete_jobs()
 
-def test_fetch_jobs_by_two_search_params():
+def test_fetch_jobs_by_title_and_company_name():
+    """ Test that company name and title fetches only one job group """
     job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
-    for _ in range(20):
+    query.insert("test_job_3", TEST_JOB_3)
+    for _ in range(10):
         job = random.choice(job_types)
         query.insert(job["test_source_api"], job)
 
@@ -108,9 +118,11 @@ def test_fetch_jobs_by_two_search_params():
 
     helper_delete_jobs()
 
-def test_fetch_jobs_by_three_search_params():
+def test_fetch_jobs_by_title_company_name_and_location():
+    """ Test all three main search params fetch only one job group """
     job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
-    for _ in range(20):
+    query.insert("test_job_2", TEST_JOB_2)
+    for _ in range(10):
         job = random.choice(job_types)
         query.insert(job["test_source_api"], job)
 
@@ -126,6 +138,7 @@ def test_delete_jobs():
     return #TODO
 
 def test_delete_all_jobs():
+    """ Test that deleting all jobs leaves nothing behind """
     job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
     for test_job in job_types:
         for _ in range(5):
