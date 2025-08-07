@@ -1,5 +1,6 @@
 import pytest
 import requests
+from unittest.mock import patch
 from fetching import Fetcher
 from constants import *
 
@@ -19,7 +20,7 @@ def test_fetcher_getters():
     assert TEST.get_params() == PARAMS
 
 def test_fetcher_json_decode_exception_raised():
-    """ Test case where Fetcher throws exception """
+    """ Test if JSONDecode Exception raised """
     none_params = {
         "none_param":   "none",
     }
@@ -27,7 +28,29 @@ def test_fetcher_json_decode_exception_raised():
     with pytest.raises(requests.exceptions.JSONDecodeError):
         TEST.get_jobs(none_params)
 
-#TODO add test cases for other Fetcher exceptions
+def test_fetcher_timeout_exception_raised():
+    """ Test if Timeout Exception raised """
+    with patch("requests.get", side_effect=requests.exceptions.Timeout):
+        with pytest.raises(requests.exceptions.Timeout):
+            TEST.get_jobs()
+
+def test_fetcher_http_exception_raised():
+    """ Test if HTTP Exception raised """
+    with patch("requests.get", side_effect=requests.exceptions.HTTPError):
+        with pytest.raises(requests.exceptions.HTTPError):
+            TEST.get_jobs()
+
+def test_fetcher_connection_exception_raised():
+    """ Test if ConnectionException raised """
+    with patch("requests.get", side_effect=requests.exceptions.ConnectionError):
+        with pytest.raises(requests.exceptions.ConnectionError):
+            TEST.get_jobs()
+
+def test_fetcher_request_exception_raised():
+    """ Test if general RequestException raised """
+    with patch("requests.get", side_effect=requests.exceptions.RequestException):
+        with pytest.raises(requests.exceptions.RequestException):
+            TEST.get_jobs()
 
 def test_fetcher_returns_none():
     """ Test response is None for invalid requests """
@@ -40,7 +63,7 @@ def test_fetcher_returns_none():
 
 def test_fetcher_no_extra_params():
     """ Test response has value and no exceptions """
-    response = TEST.get_jobs()      #no exceptions if this line runs
+    response = TEST.get_jobs()
     assert response is not None
     assert len(response) <= MAX_FETCH
 
