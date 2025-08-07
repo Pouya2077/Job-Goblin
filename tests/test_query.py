@@ -1,4 +1,5 @@
 import random
+import pytest
 from database import query
 from database import get_api_field, API_PATHS
 import constants
@@ -38,6 +39,11 @@ TEST_JOB_3 = {
     "test_source_api":      "test_job_3",
 }
 
+@pytest.fixture
+def empty_test_database(autouse=True):
+    yield
+    query.delete_all_jobs()
+
 def helper_delete_jobs():
     """ Helper: delete jobs (for use after testing is finished) """
     api_names = ["test_job_0", "test_job_1", "test_job_2", "test_job_3"]
@@ -69,7 +75,7 @@ def test_insert_one_job():
     assert len(response.data) == 1
     compare_fields(inserted_job, TEST_JOB_0, API_PATHS["test_job_0"])
 
-    helper_delete_jobs()
+    # helper_delete_jobs()
 
 def test_fetch_no_jobs():
     """ Test case where None is response """
@@ -93,7 +99,7 @@ def test_fetch_no_jobs():
     response = query.fetch_jobs("none_api", 4, "none_title", "none_company", "none_location")
     assert not response
 
-    helper_delete_jobs()
+    # helper_delete_jobs()
 
 def test_fetch_jobs_by_api_name():
     """ Ensure that fetching a job by api_name only fetches one job group """
@@ -109,7 +115,7 @@ def test_fetch_jobs_by_api_name():
     for job in response:
         compare_fields(job, TEST_JOB_0, API_PATHS["test_job_0"])
 
-    helper_delete_jobs()
+    # helper_delete_jobs()
 
 def test_fetch_jobs_by_company_name():
     """ Test that company name fetches one job group """
@@ -127,7 +133,7 @@ def test_fetch_jobs_by_company_name():
     for job in response:
         compare_fields(job, get_test_job_type(job), API_PATHS[job["source_api"]])
 
-    helper_delete_jobs()
+    # helper_delete_jobs()
 
 def test_fetch_jobs_by_title_and_company_name():
     """ Test that company name and title fetches only one job group """
@@ -143,7 +149,7 @@ def test_fetch_jobs_by_title_and_company_name():
     for job in response:
         compare_fields(job, TEST_JOB_3, API_PATHS[job["source_api"]])
 
-    helper_delete_jobs()
+    # helper_delete_jobs()
 
 def test_fetch_jobs_by_title_company_name_and_location():
     """ Test all three main search params fetch only one job group """
@@ -159,7 +165,7 @@ def test_fetch_jobs_by_title_company_name_and_location():
     for job in response:
         compare_fields(job, TEST_JOB_2, API_PATHS[job["source_api"]])
 
-    helper_delete_jobs()
+    # helper_delete_jobs()
 
 def test_delete_no_jobs():
     """ Test case where no jobs in database deleted """
@@ -186,7 +192,7 @@ def test_delete_no_jobs():
     response = query.delete_jobs("none_api", 10, "none_title", "none_company", "none_location")
     assert not response
 
-    helper_delete_jobs()
+    # helper_delete_jobs()
 
 def test_delete_jobs_by_api_name():
     """ Test delete jobs by api_name only """
@@ -204,7 +210,7 @@ def test_delete_jobs_by_api_name():
     for job in response:
         compare_fields(job, TEST_JOB_0, API_PATHS["test_job_0"])
 
-    helper_delete_jobs()
+    # helper_delete_jobs()
 
 def test_delete_jobs_by_title_and_company():
     """ Test deleting jobs only by title and company """
@@ -220,7 +226,7 @@ def test_delete_jobs_by_title_and_company():
     for job in response:
         compare_fields(job, TEST_JOB_3, API_PATHS["test_job_3"])
 
-    helper_delete_jobs()
+    # helper_delete_jobs()
 
 def test_delete_jobs_by_title_company_name_and_location():
     """" Test deleting jobs by three main search parameters """
@@ -236,10 +242,11 @@ def test_delete_jobs_by_title_company_name_and_location():
     for job in response:
         compare_fields(job, TEST_JOB_2, API_PATHS["test_job_2"])
 
-    helper_delete_jobs()
+    # helper_delete_jobs()
 
 def test_delete_all_jobs():
     """ Test that deleting all jobs leaves nothing behind """
+    query.delete_all_jobs()
     job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
     for job in job_types:
         query.insert(job["test_source_api"], job)
@@ -253,6 +260,4 @@ def test_delete_all_jobs():
         assert response is not None
         assert len(response) == 14
 
-    helper_delete_jobs()
-
-constants.TABLE = "jobs"
+    # helper_delete_jobs()

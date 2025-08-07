@@ -21,7 +21,3 @@ Subject: Successfully deleted jobs from database.
 Jobs deleted: {count}"""
 email.email_message(MESSAGE)                                #send msg with total jobs deleted
 LOG.info(f"Deleted {count} jobs.")
-
-constants.TABLE = "test_jobs"
-query.delete_all_jobs()
-constants.TABLE = "jobs"
