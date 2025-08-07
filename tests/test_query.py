@@ -39,11 +39,6 @@ TEST_JOB_3 = {
     "test_source_api":      "test_job_3",
 }
 
-@pytest.fixture
-def empty_test_database(autouse=True):
-    yield
-    query.delete_all_jobs()
-
 def helper_delete_jobs():
     """ Helper: delete jobs (for use after testing is finished) """
     api_names = ["test_job_0", "test_job_1", "test_job_2", "test_job_3"]
