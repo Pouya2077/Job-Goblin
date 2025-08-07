@@ -1,3 +1,5 @@
+import pytest
+import requests
 from fetching import Fetcher
 from constants import *
 
@@ -16,17 +18,25 @@ def test_fetcher_getters():
     assert TEST.get_name() == NAME
     assert TEST.get_params() == PARAMS
 
-def test_fetcher_exception_expected():
+def test_fetcher_json_decode_exception_raised():
     """ Test case where Fetcher throws exception """
     none_params = {
         "none_param":   "none",
     }
 
-    response = TEST.get_jobs(none_params)
-    assert response is None
+    with pytest.raises(requests.exceptions.JSONDecodeError):
+        TEST.get_jobs(none_params)
+
+#TODO add test cases for other Fetcher exceptions
 
 def test_fetcher_returns_none():
-    return #TODO
+    """ Test response is None for invalid requests """
+    test = Fetcher(URL, NAME, {"what":              "nothing job",
+                               "results_per_page":  10,
+                               "where":             "Vancouver, BC"})
+
+    response = test.get_jobs()
+    assert response is not None
 
 def test_fetcher_no_extra_params():
     """ Test response has value and no exceptions """
