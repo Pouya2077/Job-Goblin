@@ -77,7 +77,7 @@ def delete_jobs(api_name=None, num_jobs=0, title=None, company=None, location=No
 
     jobs = response.data
     if not jobs:
-        return None
+        return []
 
     job_ids = [job["id"] for job in jobs]
     result = supabase.table(TABLE)\
@@ -88,7 +88,7 @@ def delete_jobs(api_name=None, num_jobs=0, title=None, company=None, location=No
     return result.data
 
 def delete_all_jobs(api_name=None):
-    """ NOT for script usage """
+    """ NOT for scripts """
 
     query = supabase.table(TABLE).select("id")
 

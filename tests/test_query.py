@@ -76,19 +76,19 @@ def test_fetch_no_jobs():
     query.insert("test_job_3", TEST_JOB_3)
 
     response = query.fetch_jobs("none_api", 4)
-    assert response is None
+    assert not response
 
     response = query.fetch_jobs(None, 4, "none_title")
-    assert response is None
+    assert not response
 
     response = query.fetch_jobs(None, 4, None, "none_company")
-    assert response is None
+    assert not response
 
     response = query.fetch_jobs(None, 4, None, None, "none_location")
-    assert response is None
+    assert not response
 
     response = query.fetch_jobs("none_api", 4, "none_title", "none_company", "none_location")
-    assert response is None
+    assert not response
 
     helper_delete_jobs()
 
@@ -158,6 +158,33 @@ def test_fetch_jobs_by_title_company_name_and_location():
 
     helper_delete_jobs()
 
+def test_delete_no_jobs():
+    """ Test case where no jobs in database deleted """
+    job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
+    for job in job_types:
+        query.insert(job["test_source_api"], job)
+
+    for _ in range(5):
+        job = random.choice(job_types)
+        query.insert(job["test_source_api"], job)
+
+    response = query.delete_jobs("none_api", 10)
+    assert not response
+
+    response = query.delete_jobs(None, 10, "none_title")
+    assert not response
+
+    response = query.delete_jobs(None, 10, None, "none_company")
+    assert not response
+
+    response = query.delete_jobs(None, 10, None, None, "none_location")
+    assert not response
+
+    response = query.delete_jobs("none_api", 10, "none_title", "none_company", "none_location")
+    assert not response
+
+    helper_delete_jobs()
+
 def test_delete_jobs_by_api_name():
     """ Test delete jobs by api_name only """
     job_types = [TEST_JOB_0, TEST_JOB_1]
@@ -211,10 +238,8 @@ def test_delete_jobs_by_title_company_name_and_location():
 def test_delete_all_jobs():
     """ Test that deleting all jobs leaves nothing behind """
     job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
-    query.insert("test_job_0", TEST_JOB_0)
-    query.insert("test_job_1", TEST_JOB_1)
-    query.insert("test_job_2", TEST_JOB_2)
-    query.insert("test_job_3", TEST_JOB_3)
+    for job in job_types:
+        query.insert(job["test_source_api"], job)
 
     for test_job in job_types:
         for _ in range(13):
@@ -226,4 +251,3 @@ def test_delete_all_jobs():
         assert len(response) == 14
 
     helper_delete_jobs()
-
