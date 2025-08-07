@@ -19,7 +19,7 @@ jobs:
         uses: ./.github/actions/setup_env
       
       - name: Run Test
-        runs: pytest ./tests/test_event_logging.py
+        run: pytest ./tests/test_event_logging.py
   
   test2:
     name: Run Fetcher Class Tests
@@ -33,7 +33,7 @@ jobs:
         uses: ./.github/actions/setup_env
       
       - name: Run Test
-        runs: pytest ./tests/test_fetcher_class.py
+        run: pytest ./tests/test_fetcher_class.py
   
   test3:
     name: Run Job Mappings Tests
@@ -47,7 +47,7 @@ jobs:
         uses: ./.github/actions/setup_env
 
       - name: Run Test
-        runs: pytest ./tests/test_job_mappings.py
+        run: pytest ./tests/test_job_mappings.py
 
   test4:
     name: Run Database Tests
@@ -61,4 +61,4 @@ jobs:
         uses: ./.github/actions/setup_env
 
       - name: Run Test
-        runs: pytest ./tests/test_query.py 
+        run: pytest ./tests/test_query.py 
