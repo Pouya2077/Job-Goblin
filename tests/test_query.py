@@ -140,11 +140,16 @@ def test_delete_jobs():
 def test_delete_all_jobs():
     """ Test that deleting all jobs leaves nothing behind """
     job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
+    query.insert("test_job_0", TEST_JOB_0)
+    query.insert("test_job_1", TEST_JOB_1)
+    query.insert("test_job_2", TEST_JOB_2)
+    query.insert("test_job_3", TEST_JOB_3)
+
     for test_job in job_types:
-        for _ in range(5):
+        for _ in range(13):
             query.insert(test_job["test_source_api"], test_job)
 
     for test_job in job_types:
         response = query.delete_all_jobs(test_job["test_source_api"])
         assert response is not None
-        assert len(response) == 5
+        assert len(response) == 14

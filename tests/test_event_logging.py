@@ -2,6 +2,7 @@ import logging
 from event_logging import LOG
 
 def test_event_logger(caplog):
+    """ Test that app.log is updated correctly """
     levels = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
     LOG.handlers = []
     LOG.propagate = True
