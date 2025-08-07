@@ -68,6 +68,30 @@ def test_insert_one_job():
 
     helper_delete_jobs()
 
+def test_fetch_no_jobs():
+    """ Test case where None is response """
+    query.insert("test_job_0", TEST_JOB_0)
+    query.insert("test_job_1", TEST_JOB_1)
+    query.insert("test_job_2", TEST_JOB_2)
+    query.insert("test_job_3", TEST_JOB_3)
+
+    response = query.fetch_jobs("none_api", 4)
+    assert response is None
+
+    response = query.fetch_jobs(None, 4, "none_title")
+    assert response is None
+
+    response = query.fetch_jobs(None, 4, None, "none_company")
+    assert response is None
+
+    response = query.fetch_jobs(None, 4, None, None, "none_location")
+    assert response is None
+
+    response = query.fetch_jobs("none_api", 4, "none_title", "none_company", "none_location")
+    assert response is None
+
+    helper_delete_jobs()
+
 def test_fetch_jobs_by_api_name():
     """ Ensure that fetching a job by api_name only fetches one job group """
     for _ in range(5):
@@ -134,8 +158,55 @@ def test_fetch_jobs_by_title_company_name_and_location():
 
     helper_delete_jobs()
 
-def test_delete_jobs():
-    return #TODO
+def test_delete_jobs_by_api_name():
+    """ Test delete jobs by api_name only """
+    job_types = [TEST_JOB_0, TEST_JOB_1]
+    query.insert("test_job_0", TEST_JOB_0)
+    query.insert("test_job_1", TEST_JOB_1)
+
+    for _ in range(9):
+        job = random.choice(job_types)
+        query.insert(job["test_source_api"], job)
+
+    response = query.delete_jobs("test_job_0", 3)
+    assert response is not None
+
+    for job in response:
+        compare_fields(job, TEST_JOB_0, API_PATHS["test_job_0"])
+
+    helper_delete_jobs()
+
+def test_delete_jobs_by_title_and_company():
+    """ Test deleting jobs only by title and company """
+    job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
+    query.insert("test_job_3", TEST_JOB_3)
+    for _ in range(10):
+        job = random.choice(job_types)
+        query.insert(job["test_source_api"], job)
+
+    response = query.delete_jobs(None, 3, "Test Jr. Dev", "Test Incorporation")
+    assert response is not None
+
+    for job in response:
+        compare_fields(job, TEST_JOB_3, API_PATHS["test_job_3"])
+
+    helper_delete_jobs()
+
+def test_delete_jobs_by_title_company_name_and_location():
+    """" Test deleting jobs by three main search parameters """
+    job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
+    query.insert("test_job_2", TEST_JOB_2)
+    for _ in range(10):
+        job = random.choice(job_types)
+        query.insert(job["test_source_api"], job)
+
+    response = query.delete_jobs(None, 3, "Test Jr. Dev", "Test Enterprises", "Toronto, ON")
+    assert response is not None
+
+    for job in response:
+        compare_fields(job, TEST_JOB_2, API_PATHS["test_job_2"])
+
+    helper_delete_jobs()
 
 def test_delete_all_jobs():
     """ Test that deleting all jobs leaves nothing behind """
@@ -153,3 +224,6 @@ def test_delete_all_jobs():
         response = query.delete_all_jobs(test_job["test_source_api"])
         assert response is not None
         assert len(response) == 14
+
+    helper_delete_jobs()
+
