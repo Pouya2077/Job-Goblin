@@ -15,6 +15,11 @@ PARAMS = {
         }
 TEST = Fetcher(URL, NAME, PARAMS)
 
+@pytest.fixture
+def empty_test_database(autouse=True):
+    yield
+    query.delete_all_jobs()
+
 def test_fetcher_getters():
     """ Test public getters """
     assert TEST.get_url() == URL

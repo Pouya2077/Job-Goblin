@@ -13,7 +13,7 @@ default_params = {
         "what": "Software Developer Intern", 
         "results_per_page": 10, 
         "where": "Vancouver, BC",
-        }                           #basic search params                                
+        }                           #basic search params                               
 
 Adzuna0 = Fetcher(BASE_URL, NAME, default_params)
 Adzuna1 = Fetcher(BASE_URL, NAME, {"what": "Software Engineer Intern",
