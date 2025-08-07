@@ -77,3 +77,5 @@ def test_fetcher_use_extra_params():
     response = TEST.get_jobs(extra_params)
     assert response is not None
     assert len(response) <= MAX_FETCH
+
+#TODO refactor so that these tests don't clog database
