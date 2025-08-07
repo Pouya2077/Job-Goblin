@@ -4,7 +4,7 @@ from database import query
 from database import get_api_field, API_PATHS
 import constants
 
-constants.TABLE = "test_jobs"
+constants.TABLE = "test_jobs"   #only for the lifetime of this module
 
 TEST_JOB_0 = {
     "test_title":           "Test Sr. Dev", 
@@ -247,7 +247,7 @@ def test_delete_jobs_by_title_company_name_and_location():
 
 def test_delete_all_jobs():
     """ Test that deleting all jobs leaves nothing behind """
-    # query.delete_all_jobs()
+    query.delete_all_jobs()
     job_types = [TEST_JOB_0, TEST_JOB_1, TEST_JOB_2, TEST_JOB_3]
     for job in job_types:
         query.insert(job["test_source_api"], job)
@@ -259,6 +259,6 @@ def test_delete_all_jobs():
     for test_job in job_types:
         response = query.delete_all_jobs(test_job["test_source_api"])
         assert response is not None
-        # assert len(response) == 14
+        assert len(response) == 14
 
     # helper_delete_jobs()

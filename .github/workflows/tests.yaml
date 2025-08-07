@@ -8,7 +8,7 @@ on:
 
 jobs:
   test1:
-    name: Run Database Tests
+    name: Run Event Logging Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -17,3 +17,48 @@ jobs:
 
       - name: Setup Python
         uses: ./.github/actions/setup_env
+      
+      - name: Run Test
+        runs: pytest ./tests/test_event_logging.py
+  
+  test2:
+    name: Run Fetcher Class Tests
+    runs-on: ubuntu_latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: ./.github/actions/setup_env
+      
+      - name: Run Test
+        runs: pytest ./tests/test_fetcher_class.py
+  
+  test3:
+    name: Run Job Mappings Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: ./.github/actions/setup_env
+
+      - name: Run Test
+        runs: pytest ./tests/test_job_mappings.py
+
+  test4:
+    name: Run Database Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: ./.github/actions/setup_env
+
+      - name: Run Test
+        runs: pytest ./tests/test_query.py 

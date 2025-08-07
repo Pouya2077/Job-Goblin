@@ -5,7 +5,7 @@ from fetching import Fetcher
 import constants
 from database import query
 
-constants.TABLE = "test_jobs"
+constants.TABLE = "test_jobs"       #only for the lifetime of this module
 URL = "http://api.adzuna.com/v1/api/jobs/ca/search/1?"
 NAME = "ADZUNA"  #testing only Adzuna should still covers general cases for all APIs
 PARAMS = {
