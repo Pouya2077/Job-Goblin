@@ -21,7 +21,7 @@ class Fetcher:
         return self.__url
 
     def get_name(self):
-        """ Get private name """
+        """ Get private API name """
         return self.__name
 
     def get_params(self):
