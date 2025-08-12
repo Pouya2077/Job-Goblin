@@ -1,3 +1,5 @@
+""" Test cases for job mapping functions """
+
 from database import get_api_field
 
 TEST_NONE_JOB = {}

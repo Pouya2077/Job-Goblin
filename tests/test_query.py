@@ -1,3 +1,5 @@
+""" Test cases for database functions/functionality """
+
 import random
 import pytest
 from database import query

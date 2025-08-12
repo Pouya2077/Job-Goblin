@@ -1,3 +1,5 @@
+""" Test cases for event logger """
+
 import logging
 from event_logging import LOG
 

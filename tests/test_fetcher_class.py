@@ -1,3 +1,5 @@
+""" Test cases for Fetcher class """
+
 import pytest
 import requests
 from unittest.mock import patch
