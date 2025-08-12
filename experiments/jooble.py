@@ -7,11 +7,13 @@ ENDPOINT = "https://jooble.org/api"
 AUTH_PARAMS = get_auth("JOOBLE")
 PARAMS = {
     "keywords": "software developer intern", 
-    "location": "British Columbia", 
+    "location": "Vancouver", 
     "page":     1,
 }
 
 response = requests.post(ENDPOINT + f"/{AUTH_PARAMS["app_key"]}", json=PARAMS, timeout=2)
 
 results = response.json()["jobs"]
-print(results)
+for result in results:
+    # print(result["title"])
+    print(result["link"])
