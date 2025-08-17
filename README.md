@@ -36,7 +36,7 @@ Parameters include: api name, job title, company, location, and number of jobs.
 > Job Goblin relies on free APIs and web services to work. A list of these services and their env variables are provided in "env.example".
 >
 > **Once Aquired:** 
-> 1. Create a .env file in the root of your repository and insert your env variables. 
+> 1. Create a `.env` file in the root of your repository and insert your env variables. 
 > 2. Add your env variables to your repo's GitHub secrets for your workflows to use.
 
 **Supabase:** a free account can be created to aquire an API key and Supabase URL. Afterwards, create a table in your database (name can be anything as long as `constants.py` is updated) with columns...
