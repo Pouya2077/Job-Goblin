@@ -15,10 +15,14 @@ Parameters include: api name, job title, company, location, and number of jobs.
 
 Job Goblin relies on free APIs and web services (such as Supabase) to fetch and store jobs properly. Keys and URL endpoints must be aquired for Job Goblin to work. For email functionality, Job Goblin needs access to a gmail account and app password provided by the user.
 
+Job Goblin is built using Python and its libraries. 
+
 ### Setup
-1. Clone the repository to your local device.
-2. To install dependencies: pip install -r requirements.txt
-3. To install the packages of the project: pip install -e .
+1. Clone the repository to your local device
+2. Install dependencies: `pip install -r requirements.txt`
+3. Install custom packages: `pip install -e`
+
+> Note: `pip install -e` assumes the Python "src layout" structure, which defines packages within the "src" directory denoted by `__init__.py` for Python's package manager to use ([src layout vs. flat layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)).
 
 **User Stories**
 1. "I want the program to routinely query jobs on a schedule I give it."
@@ -32,7 +36,4 @@ Job Goblin relies on free APIs and web services (such as Supabase) to fetch and 
 3. "I want to build something that is practical for daily use."
 4. "I want to learn how to run scripts remotely using GitHub Actions or other services."
 5. "I want to learn basics of how APIs work, how to use them, and why they are useful."
-
-This project is meant for a single user, not meant for production. If someone wants to use it they can host it locally or remotely with a few minor script tweaks.
-
-Development will be iterative with modularized stages of development. This ensures that individual components can work somewhat independently of each other so that parts of the program are usable before the entire thing is finished. 
+ 
