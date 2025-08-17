@@ -22,7 +22,9 @@ Job Goblin is built using Python and its libraries.
 2. Install dependencies: `pip install -r requirements.txt`
 3. Install custom packages: `pip install -e`
 
-> Note: `pip install -e` assumes the Python "src layout" structure, which defines packages within the "src" directory denoted by `__init__.py` for Python's package manager to use ([src layout vs. flat layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)).
+> Note: `pip install -e` assumes the Python "src layout" structure, which defines packages within the "src" directory denoted by `__init__.py` that Python's package manager users.
+> 
+> [src layout vs. flat layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
 
 **User Stories**
 1. "I want the program to routinely query jobs on a schedule I give it."
