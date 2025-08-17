@@ -6,6 +6,7 @@ Job Goblin
 > Job Goblin **routinely fetches jobs** from third party REST APIs for you. Enter your job preferences and let **Job Goblin find your dream job!** 
 
 **Configurable Settings**
+
 - Fetching schedule 
 - Search parameters
 - Database maintenance parameters 
@@ -17,25 +18,25 @@ Job Goblin relies on free APIs and web services (such as Supabase) to fetch and 
 
 Job Goblin is built using Python and its libraries. 
 
-### Setup
-1. Clone the repository to your local device
-2. Install dependencies: `pip install -r requirements.txt`
-3. Install custom packages: `pip install -e`
+### Setup 
+
+1. Create a GitHub copy of the repository
+    - Option 1: Fork original repo
+    - Option 2: Import original repo
+    - Option 3: clone original repo and push it to GitHub
+2. Open repository (connected to your GitHub clone) in your IDE of choice.
+3. Install dependencies: `pip install -r requirements.txt`
+4. Install custom packages: `pip install -e`
+5. [Navigate to Env Setup](#env-setup) for further instructions
 
 > Note: `pip install -e` assumes the Python "src layout" structure, which defines packages within the "src" directory denoted by `__init__.py` that Python's package manager users.
 > 
 > [src layout vs. flat layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
 
-**User Stories**
-1. "I want the program to routinely query jobs on a schedule I give it."
-2. "I want the program to query jobs using search parameters I give it (name, company, etc.)."
-3. "I want to be emailed about jobs the program found for me."
-4. "I want jobs the program queried to be stored for me to look at later."
+### Env-Setup
 
-**Developer Stories**
-1. "I want to improve my Python programming skills that includes syntax and mastering built-in, standard functions."
-2. "I want to use an OOD to improve my OOP skills and make encapsulated, maintainable code."
-3. "I want to build something that is practical for daily use."
-4. "I want to learn how to run scripts remotely using GitHub Actions or other services."
-5. "I want to learn basics of how APIs work, how to use them, and why they are useful."
+### Usage
+
+### Adding New APIs
+
  
