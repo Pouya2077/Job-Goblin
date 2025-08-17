@@ -13,7 +13,7 @@ default_params = {
         "what": "Software Developer Intern", 
         "results_per_page": 10, 
         "where": "Vancouver, BC",
-        }                           #basic search params                               
+        }                           #basic search params                         
 
 Adzuna0 = Fetcher(BASE_URL, NAME, default_params)
 Adzuna1 = Fetcher(BASE_URL, NAME, {"what": "Software Engineer Intern",
@@ -42,3 +42,7 @@ Subject: Successfully queried and inserted jobs into database.
 Jobs inserted: {count}"""
 email.email_message(MESSAGE)    #msg with total jobs inserted
 LOG.info(f"Inserted {count} jobs.")
+
+#TODO add company blacklist
+#TODO remove duplicate jobs
+#TODO add sentiment analysis (extra filtering)

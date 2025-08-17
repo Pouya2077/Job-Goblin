@@ -1,7 +1,21 @@
-# Job Goblin - WORK IN PROGRESS
-## Find jobs without doing any of the work to!
+Job Goblin 
+==========
 
-**Setup**
+> **Find jobs without a single click!**
+>
+> Job Goblin **routinely fetches jobs** from third party REST APIs for you. Enter your job preferences and let **Job Goblin find your dream job!** 
+
+**Configurable Settings**
+- Fetching schedule 
+- Search parameters
+- Database maintenance parameters 
+- Emailing parameters
+
+Parameters include: api name, job title, company, location, and number of jobs. 
+
+Job Goblin relies on free APIs and web services (such as Supabase) to fetch and store jobs properly. Keys and URL endpoints must be aquired for Job Goblin to work. For email functionality, Job Goblin needs access to a gmail account and app password provided by the user.
+
+### Setup
 1. Clone the repository to your local device.
 2. To install dependencies: pip install -r requirements.txt
 3. To install the packages of the project: pip install -e .

@@ -28,7 +28,6 @@ jobs:
 
     - name: Run Script
       run: python3 ./src/scripts/adzuna.py
-
     
 
 
