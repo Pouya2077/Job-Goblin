@@ -77,7 +77,9 @@ Add new test suites to the `tests` directory, following [pytest naming conventio
     - Make sure that `.env` variables follow the proper conventions outlined by `auth.py`
 2. Navigate to `database/job_mappings.py` and create a dict for the API that maps each field to the path through the APIs JSON job
     - Follow the conventions outlined in the module
-3. Navigate to `scripts` and create a new script for your API using the modules provided (and `adzuna.py` as an example)
+3. Navigate to `scripts` and create a new script for your API
+    - Use existing emailing, querying, and fetching modules to create your script's functionality
+    - Examples of module usage are provided in `adzuna.py`, `maintenance.py`, and `send_emails.py` scripts
 
 **Optionally** add your new script to an automatic and routine GitHub workflow in `query.yaml`.
 
