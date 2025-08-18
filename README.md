@@ -1,4 +1,4 @@
-Job Goblin 
+Job-Goblin 
 ==========
 
 > **Find jobs without a single click!**
@@ -35,7 +35,7 @@ Parameters include: api name, job title, company, location, and number of jobs.
 
 > Job Goblin relies on free APIs and web services to work. A list of these services and their env variables are provided in "env.example".
 >
-> **Once Aquired:** 
+> **Once Acquired:** 
 > 1. Create a `.env` file in the root of your repository and insert your env variables. 
 > 2. Add your env variables to your repo's GitHub secrets for your workflows to use.
 
@@ -55,11 +55,17 @@ Parameters include: api name, job title, company, location, and number of jobs.
 ---------
 ### Usage
 
-#### GitHub Workflows
+`Constants.py` features constants used for querying job data and emailing it to the user. Configurable to personal preferences.
+
+A default `adzuna.py` script is ready and included in GitHub workflows. This can be run in GitHub actions or from your IDE manually. Via a cron jobs GitHub workflow, it also runs periodically. 
+
+To add new APIs and an automatically running script for them, [Navigate to Adding-New-APIs](#adding-new-apis)
+
+#### GitHub-Workflows
 
 #### Testing 
 
 ---------
-### Adding New APIs
+### Adding-New-APIs
 
  
