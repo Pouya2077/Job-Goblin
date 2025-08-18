@@ -61,11 +61,17 @@ A default `adzuna.py` script is ready and included in GitHub workflows. This can
 
 To add new APIs and an automatically running script for them, [Navigate to Adding-New-APIs](#adding-new-apis)
 
-#### GitHub-Workflows
-
 #### Testing 
+
+To run test cases use `pytest` in terminal or `pytest -v` for verbose output.   
+
+Test cases automatically run whenever code is pushed to the main branch. To turn this off, simply comment out or delete "on push" code from `tests.yaml`.
+
+Add new test suites to the `tests` directory, following [pytest naming conventions](https://docs.pytest.org/en/stable/explanation/goodpractices.html) for test cases. For these tests to run on a push to the main branch, they must be added as a test to `tests.yaml`.
 
 ---------
 ### Adding-New-APIs
+
+#### GitHub-Workflows
 
  
