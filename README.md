@@ -33,13 +33,13 @@ Parameters include: api name, job title, company, location, and number of jobs.
 -------
 ### Env-Setup
 
-> Job Goblin relies on free APIs and web services to work. A list of these services and their env variables are provided in "env.example".
->
-> **Once Acquired:** 
-> 1. Create a `.env` file in the root of your repository and insert your env variables. 
-> 2. Add your env variables to your repo's GitHub secrets for your workflows to use.
+Job Goblin relies on free APIs and web services to work. A list of these services and their env variables are provided in `env.example`.
 
-**Supabase:** a free account can be created to aquire an API key and Supabase URL. Afterwards, create a table in your database (name can be anything as long as `constants.py` is updated) with columns...
+**Once Acquired:** 
+1. Create a `.env` file in the root of your repository and insert your env variables. 
+2. Add your env variables to your repo's GitHub secrets for your workflows to use.
+
+**Supabase:** a free account can be created to aquire an API key and Supabase URL. Afterwards, create a table in your database (table name can be anything as long as `constants.py` is updated) with columns...
 
 - Title
 - Company
@@ -55,7 +55,7 @@ Parameters include: api name, job title, company, location, and number of jobs.
 ---------
 ### Usage
 
-`Constants.py` features constants used for querying job data and emailing it to the user. Configurable to personal preferences.
+`Constants.py` features constants used for querying job data and emailing it to the user. Configurable to personal preferences. Remeber to **UPDATE** constants as needed when refactoring the codebase. 
 
 A default `adzuna.py` script is ready and included in GitHub workflows. This can be run in GitHub actions or from your IDE manually. Via a cron jobs GitHub workflow, it also runs periodically. 
 
@@ -72,6 +72,13 @@ Add new test suites to the `tests` directory, following [pytest naming conventio
 ---------
 ### Adding-New-APIs
 
-#### GitHub-Workflows
+1. Acquire new APIs authentication information and enter it into your `.env` file and GitHub secrets. 
+    - This ensures that the authentication functions of Job-Goblin can easily obtain relevant env variables
+    - Make sure that `.env` variables follow the proper conventions outlined by `auth.py`
+2. Navigate to `database/job_mappings.py` and create a dict for the API that maps each field to the path through the APIs JSON job
+    - Follow the conventions outlined in the module
+3. Navigate to `scripts` and create a new script for your API using the modules provided (and `adzuna.py` as an example)
+
+**Optionally** add your new script to an automatic and routine GitHub workflow in `query.yaml`.
 
  

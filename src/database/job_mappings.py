@@ -1,5 +1,8 @@
 """ Definition of all APIs JSON fields and fnc to iterate through them """
 
+""" dict keys should be titles of database columns
+    values should be path to the appropriate data meant for the column, 
+    seperated by '.' """
 API_PATHS = {
     #Dict to give JSON fields name for diff API responses
     "adzuna": {
@@ -8,7 +11,7 @@ API_PATHS = {
         "url":          "redirect_url", 
         "description":  "description", 
         "location":     "location.display_name",
-    },          #TODO add other APIs
+    },                                              #TODO add other APIs
     "test_job_0": {
         "title":        "test_title", 
         "company":      "test_company.test_display_name", 
