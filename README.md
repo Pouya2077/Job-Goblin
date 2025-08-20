@@ -121,5 +121,3 @@ Add new test suites to the `tests` directory, following [pytest's naming convent
 2. Advanced filtering of fetched jobs 
     - Of fetched jobs, filter them using predetermined parameters (company blacklist, remove duplicate jobs)
 3. When scaling consider use of cloud-based event logging service 
-
-

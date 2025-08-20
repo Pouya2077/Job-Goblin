@@ -17,4 +17,3 @@ formatter = logging.Formatter(
 file_handler.setFormatter(formatter)
 LOG.addHandler(file_handler)
 
-#TODO fix logger bugs

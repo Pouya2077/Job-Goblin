@@ -43,6 +43,3 @@ Jobs inserted: {count}"""
 email.email_message(MESSAGE)    #msg with total jobs inserted
 LOG.info(f"Inserted {count} jobs.")
 
-#TODO add company blacklist
-#TODO remove duplicate jobs
-#TODO add sentiment analysis (extra filtering)

@@ -11,7 +11,7 @@ API_PATHS = {
         "url":          "redirect_url", 
         "description":  "description", 
         "location":     "location.display_name",
-    },                                              #TODO add other APIs
+    },                                              
     "test_job_0": {
         "title":        "test_title", 
         "company":      "test_company.test_display_name", 
