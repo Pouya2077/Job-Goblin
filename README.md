@@ -1,27 +1,27 @@
-Job-Goblin 
+Job Goblin 
 ==========
 
 > **Find jobs without a single click!**
 >
-> Job Goblin **routinely fetches jobs** from third party REST APIs for you. Enter your job preferences and let **Job Goblin find your dream job!** 
+> Job Goblin **routinely fetches jobs** from third-party REST APIs for you. Enter your job preferences and let **Job Goblin find your dream job!** 
 
 **Configurable Settings**
 
 - Fetching schedule 
-- Search parameters
-- Database maintenance parameters 
+- Fetching parameters
+- Database clean-up/maintenance parameters 
 - Emailing parameters
 
-Parameters include: api name, job title, company, location, and number of jobs. 
+Parameters (per fetch) include: API name, job title, company, location, and number of jobs.
 
 ---------
 ### About 
 
-While **searching for internships** as a computer science student at UBC I found it increasingly annoying that most positions had dozens, or even **hundreds of applicants, within hours of coming out**. I thought that if I had a system to **notify** myself quickly **about new job postings** it would be incredibly useful.
+While **searching for internships** as a computer science student at UBC, I found it increasingly annoying that most positions had dozens or even **hundreds of applicants within hours of release**. I thought that if I had a system to **notify** myself quickly **about new job postings** it would be incredibly useful.
 
-Eventually this idea evolved into creating a program that would query internships from job boards, store their important data, and send me email notifications about them. I also wanted this project to **strengthen my system design skills.** 
+Eventually this idea evolved into creating a program that would query internships from job boards, store their important data, and send me email notifications about them. I also wanted to build a project that would **strengthen my system design skills.** 
 
-Originally, I started this project using Node.js, TypeScript, and React. I found that this tech stack was overbearing and unnecessary for this project. Instead I could build scripts that can be run routinely on a schedule I provide. Thus, I restarted and created this program purely in **Python, manipulating GitHub Actions to run my scripts on GitHub's servers.**
+Originally, I started this project using Node.js, TypeScript, and React. I found that this tech stack was overbearing and unnecessary. Instead I could build scripts that can be run routinely on a schedule I provide. Thus, I restarted and created Job Goblin purely in **Python, using GitHub Actions to run my scripts and Supabase to store job data.**
 
 **[Here is what I learned from this project](#what-i-learned)**
 
@@ -35,14 +35,14 @@ Originally, I started this project using Node.js, TypeScript, and React. I found
 2. Open repository (connected to your GitHub clone) in your IDE of choice.
 3. Install dependencies: `pip install -r requirements.txt`
 4. Install custom packages: `pip install -e`
-5. [Navigate to Env-Setup](#env-setup) for further instructions
+5. [Navigate to Env Setup](#env-setup) for further instructions
 
-**Note:** `pip install -e` assumes the Python "src layout" structure, which defines packages within the "src" directory that are denoted by `__init__.py`.
+**Note:** `pip install -e` assumes the Python "src layout" structure, which defines custom packages within the "src" directory that are denoted by `__init__.py`.
 
 [Src Layout vs. Flat Layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
 
 -------
-### Env-Setup
+### Env Setup
 
 Job Goblin relies on free APIs and web services to work. A list of these services and their env variables are provided in `env.example`.
 
@@ -50,7 +50,7 @@ Job Goblin relies on free APIs and web services to work. A list of these service
 1. Create a `.env` file in the root of your repository and insert your env variables. 
 2. Add your env variables to your repo's GitHub secrets for your workflows to use.
 
-**Supabase:** a free account can be created to aquire an API key and Supabase URL. Afterwards, create a table in your database (table name can be anything as long as `constants.py` is updated) with columns...
+**Supabase:** a free account can be created to acquire an API key and Supabase URL. Afterwards, create a table in your database (table name can be anything as long as `constants.py` is updated) with columns...
 
 - Title
 - Company
@@ -59,38 +59,38 @@ Job Goblin relies on free APIs and web services to work. A list of these service
 - Location
 - Source api
 
-**Adzuna:** a free developer account can be created to aquire an API key and Adzuna ID. 
+**Adzuna:** a free developer account can be created to acquire an API key and Adzuna ID. 
 
-**Gmail:** create a free gmail account that can email your primary email. An app password can be aquired to bypass security by following this [tutorial.](https://support.google.com/mail/answer/185833?hl=en)
+**Gmail:** create a free gmail account that can email your primary email. An app password can be acquired to bypass security by following this [tutorial.](https://support.google.com/mail/answer/185833?hl=en)
 
 ---------
 ### Usage
 
-`Constants.py` features constants used for querying job data and emailing it to the user. Configurable to personal preferences. Remeber to **UPDATE** constants as needed when refactoring the codebase. 
+`constants.py` features constants used for querying job data and emailing it to the user that are configurable to personal preference. Remember to **UPDATE** constants as needed when refactoring the codebase. 
 
-A default `adzuna.py` script is ready and included in GitHub workflows. This can be run in GitHub actions or from your IDE manually. Via a cron jobs GitHub workflow, it also runs periodically. 
+A default `adzuna.py` script is ready and included in `./.github/workflows/query.yaml`. This can be run from GitHub or from your IDE manually. Via a cron schedule within the workflow itself, it also runs periodically. 
 
-To add new APIs and an automatically running script for them, [Navigate to Adding-New-APIs](#adding-new-apis)
+To add new APIs and an automatically running script for them, [Navigate to Adding a New API](#adding-a-new-api)
 
 #### Testing:
 
-To run test cases use `pytest` in terminal or `pytest -v` for verbose output.   
+To run test cases use `pytest` in the terminal or `pytest -v` for verbose output.   
 
 Test cases automatically run whenever code is pushed to the main branch. To turn this off, simply comment out or delete "on push" code from `tests.yaml`.
 
-Add new test suites to the `tests` directory, following [pytest naming conventions](https://docs.pytest.org/en/stable/explanation/goodpractices.html) for test cases. For these tests to run on a push to the main branch, they must be added as a test to `tests.yaml`.
+Add new test suites to the `tests` directory, following [pytest's naming conventions](https://docs.pytest.org/en/stable/explanation/goodpractices.html). For these tests to run on a push to the main branch, they must be explicitly added to `tests.yaml`.
 
 ---------
-### Adding-New-APIs
+### Adding a New API
 
-1. Acquire new APIs authentication information and enter it into your `.env` file and GitHub secrets. 
-    - This ensures that the authentication functions of Job-Goblin can easily obtain relevant env variables
+1. Acquire new API's authentication information and enter it into your `.env` file and GitHub secrets. 
+    - This ensures that the authentication functions of Job Goblin can easily obtain relevant env variables when fetching
     - Make sure that `.env` variables follow the proper conventions outlined by `auth.py`
-2. Navigate to `database/job_mappings.py` and create a dict for the API that maps each field to the path through the APIs JSON job
+2. Navigate to `database/job_mappings.py` and create a dict for the API that maps each database column to the path through the API's JSON object to the appropriate data
     - Follow the conventions outlined in the module
 3. Navigate to `scripts` and create a new script for your API
     - Use existing emailing, querying, and fetching modules to create your script's functionality
-    - Examples of module usage are provided in `adzuna.py`, `maintenance.py`, and `send_emails.py` scripts
+    - Examples of module usage are provided in `adzuna.py`, `maintenance.py`, and `send_emails.py`
 
 **Optionally** add your new script to an automatic and routine GitHub workflow in `query.yaml`.
 
@@ -110,14 +110,14 @@ Add new test suites to the `tests` directory, following [pytest naming conventio
 - Thorough testing of database operations, including insertion and deletion with dynamic parameter combinations 
 
 **System Integration**
-- Learned how to combine distinct web services and technologies into a cohesive system (APIs, Supabse, Python libraries, etc.)
+- Learned how to combine distinct web services and technologies into a cohesive system (APIs, Supabase, and Python libraries)
 - Built optimized, decoupled modules to create a maintainable and scalable codebase
 
 -------
 ### Future Improvements/Additions:
 
 1. Optimizing the time complexity of fetching jobs from APIs
-    - When there are many fetch requests at the same time program begins to slow 
+    - When there are many fetch requests at the same time, the program begins to slow 
 2. Advanced filtering of fetched jobs 
     - Of fetched jobs, filter them using predetermined parameters (company blacklist, remove duplicate jobs)
 3. When scaling consider use of cloud-based event logging service 
