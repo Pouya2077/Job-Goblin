@@ -119,10 +119,7 @@ Add new test suites to the `tests` directory, following [pytest naming conventio
 1. Optimizing the time complexity of fetching jobs from APIs
     - When there are many fetch requests at the same time program begins to slow 
 2. Advanced filtering of fetched jobs 
-    - Add a company blacklist
-    - Of fetched jobs, filter them using predetermined parameters
-3. 
+    - Of fetched jobs, filter them using predetermined parameters (company blacklist, remove duplicate jobs)
+3. When scaling consider use of cloud-based event logging service 
 
-TODO: add VIDEO
 
- 
