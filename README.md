@@ -15,6 +15,17 @@ Job-Goblin
 Parameters include: api name, job title, company, location, and number of jobs. 
 
 ---------
+### About 
+
+While **searching for internships** as a computer science student at UBC I found it increasingly annoying that most positions had dozens, or even **hundreds of applicants, within hours of coming out**. I thought that if I had a system to **notify** myself quickly **about new job postings** it would be incredibly useful.
+
+Eventually this idea evolved into creating a program that would query internships from job boards, store their important data, and send me email notifications about them. I also wanted this project to **strengthen my system design skills.** 
+
+Originally, I started this project using Node.js, TypeScript, and React. I found that this tech stack was overbearing and unnecessary for this project. Instead I could build scripts that can be run routinely on a schedule I provide. Thus, I restarted and created this program purely in **Python, manipulating GitHub Actions to run my scripts on GitHub's servers.**
+
+**[Here is what I learned from this project](#what-i-learned)**
+
+---------
 ### Setup 
 
 1. Create a GitHub copy of the repository
@@ -84,22 +95,33 @@ Add new test suites to the `tests` directory, following [pytest naming conventio
 **Optionally** add your new script to an automatic and routine GitHub workflow in `query.yaml`.
 
 -------
-### About 
+### What I Learned
 
-While **searching for internships** as a computer science student at UBC I found it increasingly annoying that most positions had dozens, or even **hundreds of applicants, within hours of coming out**. I thought that if I had a system to **notify** myself quickly **about new job postings** it would be incredibly useful.
+**System Design**
+- Designed standardized mapping system to parse different API JSON structures into a common schema for uniform database insertion and querying 
+- Efficiently plan and organize available resources to create a scalable and maintainable system design
 
-Eventually this idea evolved into creating a program that would query internships from job boards, store their important data, and send me email notifications about them. I also wanted this project to **strengthen my system design skills.** 
+**GitHub Actions**
+- Learned how to configure and run workflows to automate tasks
+- Gained experience setting up basic CI/CD pipelines, including automatic test suites
 
-Originally, I started this project using Node.js, TypeScript, and React. I found that this tech stack was overbearing and unnecessary for this project. Instead I could build scripts that can be run routinely on a schedule I provide. Thus, I restarted and created this program purely in **Python, manipulating GitHub Actions to run my scripts on GitHub's servers.**
+**Testing**
+- Built robust test suites to validate API fetching
+- Thorough testing of database operations, including insertion and deletion with dynamic parameter combinations 
 
-#### What I Learned:
+**System Integration**
+- Learned how to combine distinct web services and technologies into a cohesive system (APIs, Supabse, Python libraries, etc.)
+- Built optimized, decoupled modules to create a maintainable and scalable codebase
 
+-------
+### Future Improvements/Additions:
 
-
-
-#### Future Improvements/Additions:
-
-
+1. Optimizing the time complexity of fetching jobs from APIs
+    - When there are many fetch requests at the same time program begins to slow 
+2. Advanced filtering of fetched jobs 
+    - Add a company blacklist
+    - Of fetched jobs, filter them using predetermined parameters
+3. 
 
 TODO: add VIDEO
 
