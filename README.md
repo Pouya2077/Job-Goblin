@@ -28,7 +28,7 @@ Parameters include: api name, job title, company, location, and number of jobs.
 
 **Note:** `pip install -e` assumes the Python "src layout" structure, which defines packages within the "src" directory that are denoted by `__init__.py`.
 
-[src layout vs. flat layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
+[Src Layout vs. Flat Layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
 
 -------
 ### Env-Setup
@@ -50,7 +50,7 @@ Job Goblin relies on free APIs and web services to work. A list of these service
 
 **Adzuna:** a free developer account can be created to aquire an API key and Adzuna ID. 
 
-**Gmail:** create a free gmail account that can email your primary email. An app password can be aquired to bypass security by following this [tutoriel.](https://support.google.com/mail/answer/185833?hl=en)
+**Gmail:** create a free gmail account that can email your primary email. An app password can be aquired to bypass security by following this [tutorial.](https://support.google.com/mail/answer/185833?hl=en)
 
 ---------
 ### Usage
@@ -61,7 +61,7 @@ A default `adzuna.py` script is ready and included in GitHub workflows. This can
 
 To add new APIs and an automatically running script for them, [Navigate to Adding-New-APIs](#adding-new-apis)
 
-#### Testing 
+#### Testing:
 
 To run test cases use `pytest` in terminal or `pytest -v` for verbose output.   
 
@@ -82,5 +82,25 @@ Add new test suites to the `tests` directory, following [pytest naming conventio
     - Examples of module usage are provided in `adzuna.py`, `maintenance.py`, and `send_emails.py` scripts
 
 **Optionally** add your new script to an automatic and routine GitHub workflow in `query.yaml`.
+
+-------
+### About 
+
+While **searching for internships** as a computer science student at UBC I found it increasingly annoying that most positions had dozens, or even **hundreds of applicants, within hours of coming out**. I thought that if I had a system to **notify** myself quickly **about new job postings** it would be incredibly useful.
+
+Eventually this idea evolved into creating a program that would query internships from job boards, store their important data, and send me email notifications about them. I also wanted this project to **strengthen my system design skills.** 
+
+Originally, I started this project using Node.js, TypeScript, and React. I found that this tech stack was overbearing and unnecessary for this project. Instead I could build scripts that can be run routinely on a schedule I provide. Thus, I restarted and created this program purely in **Python, manipulating GitHub Actions to run my scripts on GitHub's servers.**
+
+#### What I Learned:
+
+
+
+
+#### Future Improvements/Additions:
+
+
+
+TODO: add VIDEO
 
  
