@@ -12,21 +12,21 @@ NAME = "ADZUNA"
 default_params = {
         "what": "Software Developer Intern", 
         "results_per_page": 10, 
-        "where": "Vancouver, BC",
+        "where": "Vancouver",
         }                           #basic search params                         
 
 Adzuna0 = Fetcher(BASE_URL, NAME, default_params)
 Adzuna1 = Fetcher(BASE_URL, NAME, {"what": "Software Engineer Intern",
+                                   "results_per_page": 5,
+                                   "where": "Vancouver",
+                                   })
+Adzuna2 = Fetcher(BASE_URL, NAME, {"what": "Test Developer Intern",
                                    "results_per_page": 10,
-                                   "where": "Vancouver, BC",
+                                   "where": "Vancouver",
                                    })
-Adzuna2 = Fetcher(BASE_URL, NAME, {"what": "Software Engineer Intern",
-                                   "results_per_page": 5,
-                                   "where": "Ontario",
-                                   })
-Adzuna3 = Fetcher(BASE_URL, NAME, {"what": "Software Developer Intern",
-                                   "results_per_page": 5,
-                                   "where": "Ontario",
+Adzuna3 = Fetcher(BASE_URL, NAME, {"what": "QA Engineer Intern",
+                                   "results_per_page": 10,
+                                   "where": "Vancouver",
                                    })                                       #create fetchers for each search type
 
 Adzuna0.get_jobs()
